@@ -4,7 +4,7 @@ home_views=Blueprint('home',__name__)
 
 @home_views.route("/")
 def home():
-    name = "Jersain Marin"
+    name = "Eduardo Sanchez De la rosa"
     return render_template('home/home.html', name=name)
 
 @home_views.route("/3B/")
@@ -14,10 +14,10 @@ def tres():
 
 @home_views.route("/contact/")
 def contact():
-    user = "Jersain"
+    user = "Eduardo"
     return render_template('home/contact.html', user=user)
 
 @home_views.route('/about/')
 def about():
-    user = "Jersain"
+    user = "Eduardo"
     return render_template('home/about.html', user=user)
