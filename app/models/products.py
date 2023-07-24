@@ -1,101 +1,70 @@
-from db import get_connection
+from .db import get_connection
 
 mydb = get_connection()
 
 class Product:
 
-    def __init__(self, name, description,
-                 category_id, price=0.0, 
-                 stock=10, image="", id=None):
-        self.name = name
-        self.description = description
-        self.price = price
-        self.stock = stock
-        self.category_id = category_id
-        self.image = image
-        self.id = id
+    def __init__(self, nombre_producto, marca_producto, cb_producto, precio_producto, id_producto=None):
+        self.id_producto = id_producto
+        self.nombre_producto = nombre_producto
+        self.marca_producto = marca_producto
+        self.cb_producto = cb_producto
+        self.precio_producto = precio_producto
 
     def save(self):
-        if self.id != None:
+        # Create a New Object in DB
+        if self.id_producto is None:
             with mydb.cursor() as cursor:
-                sql = "INSERT INTO products(name, description, price, stock, category_id, image) "
-                sql += "VALUES(%s, %s, %s, %s, %s, %s)"
-                val = (self.name, self.description, 
-                       self.price, self.stock, 
-                       self.category_id, self.image)
+                sql = "INSERT INTO producto(nombre_producto, marca_producto, cb_producto, precio_producto) VALUES(%s, %s, %s, %s)"
+                val = (self.nombre_producto, self.marca_producto, self.cb_producto, self.precio_producto)
                 cursor.execute(sql, val)
                 mydb.commit()
-                self.id = cursor.lastrowid
-                return self.id
+                self.id_producto = cursor.lastrowid
+                return self.id_producto
+        # Update an Object
         else:
             with mydb.cursor() as cursor:
-                sql = "UPDATE products SET name = %s, description = %s, price = %s, "
-                sql += "stock = %s, category_id = %s, image = %s WHERE id = %s"
-                val = (self.name, self.description, 
-                       self.price, self.stock, 
-                       self.category_id, self.image, self.id)
+                sql = "UPDATE producto SET nombre_producto = %s, marca_producto = %s, cb_producto = %s, precio_producto = %s WHERE id_producto = %s"
+                val = (self.nombre_producto, self.marca_producto, self.cb_producto, self.precio_producto, self.id_producto)
                 cursor.execute(sql, val)
                 mydb.commit()
-                return self.id
-
+                return self.id_producto
+            
     def delete(self):
         with mydb.cursor() as cursor:
-            sql = f"DELETE FROM products WHERE id = { id }"
+            sql = f"DELETE FROM producto WHERE id_producto = { self.id_producto }"
             cursor.execute(sql)
             mydb.commit()
-            return self.id
-
+            return self.id_producto
+            
     @staticmethod
-    def get(id):
+    def get(id_producto):
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT * FROM products WHERE id = { id }"
+            sql = f"SELECT nombre_producto, marca_producto, cb_producto, precio_producto FROM producto WHERE id_producto = { id }"
             cursor.execute(sql)
-            product = cursor.fetchone()
-            if product:
-                product = Product(name=product["name"],
-                                  description=product["description"],
-                                  price=product["price"],
-                                  stock=product["stock"],
-                                  category_id=product["category_id"],
-                                  image=product["image"],
-                                  id=product["id"])
-                return product
-            return None
-
+            result = cursor.fetchone()
+            print(result)
+            producto = Product(result["nombre_producto"], result["marca_producto"], result["cb_producto"], result["precio_producto"], id)
+            return producto
+        
     @staticmethod
-    def get_all(limit=10, page=1):
-        offset = limit * page - limit
-        products = []
+    def get_all():
+        producto = []
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT * FROM products LIMIT { limit } OFFSET { offset }"
+            sql = f"SELECT id_producto, nombre_producto, marca_producto, cb_producto, precio_producto FROM producto"
             cursor.execute(sql)
-            result = []
-            for product in result:
-                products.append(Product(name=product["name"],
-                                  description=product["description"],
-                                  price=product["price"],
-                                  stock=product["stock"],
-                                  category_id=product["category_id"],
-                                  image=product["image"],
-                                  id=product["id"]))
-            return products
-
+            result = cursor.fetchall()
+            for item in result:
+                producto.append(Product(item["nombre_producto"], item["marca_producto"], item["cb_producto"], item["precio_producto"], item["id_producto"]))
+            return producto
+    
     @staticmethod
-    def get_by_category(id_category):
-        products = []
-        with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT * FROM products WHERE category_id = { id_category }"
+    def count_all():
+        with mydb.cursor() as cursor:
+            sql = f"SELECT COUNT(id_producto) FROM producto"
             cursor.execute(sql)
-            result = []
-            for product in result:
-                products.append(Product(name=product["name"],
-                                  description=product["description"],
-                                  price=product["price"],
-                                  stock=product["stock"],
-                                  category_id=product["category_id"],
-                                  image=product["image"],
-                                  id=product["id"]))
-            return products
-
+            result = cursor.fetchone()
+            return result[0]
+        
     def __str__(self):
-        return f"{ self.name } { self.description }"
+        return f"{ self.id_producto } - { self.nombre_producto }"
