@@ -21,10 +21,10 @@ Crea Nuevo Producto
                 {{ form.marca_producto.label }}
                 {{ form.marca_producto() }}
                 {% if form.marca_producto.errors %}
-                 {% for error in form.marca_producto.errors%}
-                 <p>{{ error }}</p>
-                 {% endfor %}
-                 {% endif %}
+                   {% for error in form.marca_producto.errors%}
+                   <p>{{ error }}</p>
+                   {% endfor %}
+                {% endif %}
         </div>
         <div>
                 {{ form.cb_producto.label }}
@@ -45,7 +45,7 @@ Crea Nuevo Producto
                  {% endif %}
         </div>
         <div>
-                {{ form.submit(class="bth") }}
+                {{ form.submit(class="btn") }}
         </div>
         
    </form>
