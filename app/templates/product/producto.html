@@ -28,8 +28,8 @@ Products
                     <td>{{ pro.cb_producto }}</td>
                     <td>{{ pro.precio_producto }}</td>
                     <td>
-                    <a href="{{ url_for('product.update_pro', id_producto=pro.id_producto) }}">
-                        <i class="fa fa-pencil"></i>
+                        <a href="{{ url_for('product.update_pro', id_producto=pro.id_producto) }}">
+                            <i class="fa fa-pencil"></i>
                     </a>
                     <form action="{{ url_for('product.delete_pro', id_producto=pro.id_producto) }}" method="post">
                         <button type="submit" onclick="return confirm('Seguro')">
