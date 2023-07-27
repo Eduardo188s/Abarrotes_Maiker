@@ -7,18 +7,7 @@ def home():
     name = "Eduardo"
     return render_template('home/home.html', name=name)
 
-@home_views.route("/3B/")
-def tres():
-    alumnos = ['Gaby', 'Adriana', 'Alicia']
-    return render_template('home/tres.html', alumnos=alumnos)
-
 @home_views.route("/contact/")
 def contact():
     user = "Eduardo"
     return render_template('home/contact.html', user=user)
-
-@home_views.route('/about/')
-def about():
-    user = "Eduardo"
-    return render_template('home/about.html', user=user)
-

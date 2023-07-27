@@ -11,14 +11,11 @@
     <nav>
         <ul>
             <li><a href="{{ url_for('home.home') }}">Home</a></li>
-            <li><a href="{{ url_for('home.tres') }}">3B</a></li>
             <li><a href="{{ url_for('home.contact') }}">Contact</a></li>
-            <li><a href="{{ url_for('home.about') }}">Acerca de</a></li>
             <li><a href="{{ url_for('product.producto') }}">Producto</a></li>
             <li><a href="{{ url_for('proveedor.proveedor') }}">Proveedor</a></li>
             <li><a href="{{ url_for('clientes.cliente') }}">Clientes</a></li>
             
-
             <li><a href="{{ url_for('user.register') }}">Registro</a></li>
             {% if user %}
             <li><a href="#">Logout</a></li>

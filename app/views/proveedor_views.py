@@ -39,7 +39,8 @@ def update_prov(id_producto):
         direccion_proveedor = form.direccion_proveedor.data
         correo_proveedor = form.correo_proveedor.data
         telefono_proveedor = form.telefono_proveedor.data
-        pro.save()
+        
+        prov.save()
         return redirect(url_for('proveedor.proveedor'))
     form.nombre_proveedor.data=prov.nombre_proveedor
     form.a_paterno.data=prov.aPaterno_proveedor_proveedor
