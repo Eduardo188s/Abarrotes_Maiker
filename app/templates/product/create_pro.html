@@ -11,11 +11,11 @@ Crea Nuevo Producto
         <div>
                 {{ form.nombre_producto.label }}
                 {{ form.nombre_producto() }}
-                 {% if form.nombre_producto.errors %}
-                 {% for error in form.nombre_producto.errors%}
+                {% if form.nombre_producto.errors %}
+                {% for error in form.nombre_producto.errors%}
                  <p>{{ error }}</p>
                  {% endfor %}
-                 {% endif %}
+                {% endif %}
         </div>
         <div>
                 {{ form.marca_producto.label }}

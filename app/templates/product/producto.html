@@ -21,25 +21,23 @@ Products
         </thead>
         <tbody>
             {% for pro in producto %}
-                    <tr>
-
-                        <td>{{ pro.id_producto }}</td>
-                        <td>{{ pro.nombre_producto }}</td>
-                        <td>{{ pro.marca_producto }}</td>
-                        <td>{{ pro.cb_producto }}</td>
-                        <td>{{ pro.precio_producto }}</td>
-                        <td>
-                            <a href="{{ url_for('product.update_pro', id_producto=pro.id_producto) }}">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                            <form
-                                action="{{ url_for('product.delete_pro', id_producto=pro.id_producto) }}" method="post">
-                                <button type="submit" onclick="return confirm('Seguro de que quieres Eliminar')">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ pro.id_producto }}</td>
+                    <td>{{ pro.nombre_producto }}</td>
+                    <td>{{ pro.marca_producto }}</td>
+                    <td>{{ pro.cb_producto }}</td>
+                    <td>{{ pro.precio_producto }}</td>
+                    <td>
+                        <a href="{{ url_for('product.update_pro', id_producto=pro.id_producto) }}">
+                            <i class="fa fa-pencil"></i>
+                    </a>
+                    <form action="{{ url_for('product.delete_pro', id_producto=pro.id_producto) }}" method="post">
+                        <button type="submit" onclick="return confirm('Seguro')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
