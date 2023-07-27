@@ -6,10 +6,10 @@ class CreateProveedorForm(FlaskForm):
     nombre_proveedor=StringField('Nombre',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
-    aPaterno_proveedor=StringField('ApellidoPaterno',
+    a_paterno=StringField('ApellidoPaterno',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
-    aMaterno_proveedor=StringField('ApellidoMaterno',
+    a_materno=StringField('ApellidoMaterno',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
     direccion_proveedor=StringField('Direccion',
@@ -30,10 +30,10 @@ class UpdateProveedorForm(FlaskForm):
     nombre_proveedor=StringField('Nombre',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
-    aPaterno_proveedor=StringField('ApellidoPaterno',
+    a_paterno=StringField('ApellidoPaterno',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
-    aMaterno_proveedor=StringField('ApellidoMaterno',
+    a_materno=StringField('ApellidoMaterno',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
     direccion_proveedor=StringField('Direccion',

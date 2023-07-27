@@ -4,11 +4,11 @@ mydb = get_connection()
 
 class Proveedor:
 
-    def __init__(self, nombre_proveedor, aPaterno_proveedor, aMaterno_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor, id_proveedor=None):
+    def __init__(self, nombre_proveedor, aPaterno, aMaterno, direccion_proveedor, correo_proveedor, telefono_proveedor, id_proveedor=None):
         self.id_proveedor = id_proveedor
         self.nombre_proveedor = nombre_proveedor
-        self.aPaterno_proveedor = aPaterno_proveedor
-        self.aMaterno_proveedor = aMaterno_proveedor
+        self.a_paterno = a_paterno
+        self.a_materno = a_materno
         self.direccion_proveedor = direccion_proveedor
         self.correo_proveedor = correo_proveedor
         self.telefono_proveedor = telefono_proveedor
@@ -17,8 +17,8 @@ class Proveedor:
         # Create a New Object in DB
         if self.id_proveedor is None:
             with mydb.cursor() as cursor:
-                sql = "INSERT INTO proveedor(nombre_proveedor, aPaterno_proveedor, aMaterno_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor) VALUES(%s, %s, %s, %s, %s, %s)"
-                val = (self.nombre_proveedor,self.aPaterno_proveedor, self.aMaterno_proveedor, self.direccion_proveedor, self.correo_proveedor, self.telefono_proveedor)
+                sql = "INSERT INTO proveedor(nombre_proveedor, a_paterno, a_materno, direccion_proveedor, correo_proveedor, telefono_proveedor) VALUES(%s, %s, %s, %s, %s, %s)"
+                val = (self.nombre_proveedor,self.a_paterno, self.a_materno, self.direccion_proveedor, self.correo_proveedor, self.telefono_proveedor)
                 cursor.execute(sql, val)
                 mydb.commit()
                 self.id_proveedor = cursor.lastrowid
@@ -26,8 +26,8 @@ class Proveedor:
         # Update an Object
         else:
             with mydb.cursor() as cursor:
-                sql = "UPDATE proveedor SET nombre_proveedor = %s, aPaterno_proveedor = %s, aMaterno_proveedor = %s, direccion_proveedor = %s, correo_proveedor = %s, telefono_proveedor = %s, WHERE id_producto = %s"
-                val = (self.nombre_proveedor, self.aPaterno_proveedor, self.aMaterno_proveedor, self.direccion_proveedor, self.correo_proveedor, self.telefono_proveedor, self.id_proveedor)
+                sql = "UPDATE proveedor SET nombre_proveedor = %s, a_paterno = %s, a_materno = %s, direccion_proveedor = %s, correo_proveedor = %s, telefono_proveedor = %s, WHERE id_producto = %s"
+                val = (self.nombre_proveedor, self.a_paterno, self.a_materno, self.direccion_proveedor, self.correo_proveedor, self.telefono_proveedor, self.id_proveedor)
                 cursor.execute(sql, val)
                 mydb.commit()
                 return self.id_proveedor
@@ -42,22 +42,22 @@ class Proveedor:
     @staticmethod
     def get(id_proveedor):
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT nombre_proveedor, aPaterno_proveedor, aMaterno_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor FROM proveedor WHERE id_proveedor = { id }"
+            sql = f"SELECT nombre_proveedor, a_paterno, a_materno, direccion_proveedor, correo_proveedor, telefono_proveedor FROM proveedor WHERE id_proveedor = { id }"
             cursor.execute(sql)
             result = cursor.fetchone()
             print(result)
-            proveedor = Proveedor(result["nombre_proveedor"], result["aPaterno_proveedor"], result["aMaterno_proveedor"], result["direccion_proveedor"], result["correo_proveedor"], result["telefono_proveedor"], id)
+            proveedor = Proveedor(result["nombre_proveedor"], result["a_paterno"], result["a_materno"], result["direccion_proveedor"], result["correo_proveedor"], result["telefono_proveedor"], id)
             return proveedor
         
     @staticmethod
     def get_all():
         proveedor = []
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT id_proveedor, nombre_proveedor, aPaterno_proveedor, aMaterno_proveedor, direccion_proveedor, correo_proveedor, telefono_proveedor FROM proveedor"
+            sql = f"SELECT id_proveedor, nombre_proveedor, a_paterno, a_materno, direccion_proveedor, correo_proveedor, telefono_proveedor FROM proveedor"
             cursor.execute(sql)
             result = cursor.fetchall()
             for item in result:
-                proveedor.append(Proveedor(item["nombre_proveedor"], item["aPaterno_proveedor"], item["aMaterno_proveedor"], item["direccion_proveedor"], item["correo_proveedor"], item["telefono_proveedor"], item["id_proveedor"]))
+                proveedor.append(Proveedor(item["nombre_proveedor"], item["a_paterno"], item["a_materno"], item["direccion_proveedor"], item["correo_proveedor"], item["telefono_proveedor"], item["id_proveedor"]))
             return proveedor
     
     @staticmethod

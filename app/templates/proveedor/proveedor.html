@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Products
+Proveedor
 {% endblock title %}
 
 {% block content %}
     <h1>Proveedores</h1>
-    <a href="{{ url_for('proveedor.create_prov') }}" class="btn">Nuevo Proveedor</a>
+    <a href="{{ url_for('Proveedor.create_prov') }}" class="btn">Nuevo Proveedor</a>
     <h2>Lista de proveedores</h2>
     <table id="proveedor">
         <thead>
@@ -26,8 +26,8 @@ Products
                 <tr>
                     <td>{{ prov.id_proveedor }}</td>
                     <td>{{ prov.nombre_proveedor }}</td>
-                    <td>{{ prov.aPaterno_proveedor }}</td>
-                    <td>{{ prov.aMaterno_proveedor }}</td>
+                    <td>{{ prov.a_paterno }}</td>
+                    <td>{{ prov.a_materno }}</td>
                     <td>{{ prov.direccion_proveedor }}</td>
                     <td>{{ prov.correo_proveedor }}</td>
                     <td>{{ prov.telefono_proveedor }}</td>
