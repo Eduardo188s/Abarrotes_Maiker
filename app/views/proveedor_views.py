@@ -10,7 +10,7 @@ proveedor_views = Blueprint('proveedor',__name__)
 def proveedor():
     #Consultas categorias de DB
     proveedor = Proveedor.get_all()
-    return render_template('proveedor/proveedor.html', proveedor=proveedor)
+    return render_template('Proveedor/proveedor.html', Proveedor=proveedor)
 
 @proveedor_views.route('/proveedor/create/', methods=('GET', 'POST'))
 def create_prov():

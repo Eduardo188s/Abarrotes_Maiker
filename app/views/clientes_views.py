@@ -10,11 +10,11 @@ clientes_views=Blueprint('clientes',__name__)
 def cliente():
     #Consultas categorias de DB
     cliente = Cliente.get_all()
-    return render_template('clientes/clientes.html', product=producto)
+    return render_template('clientes/clientes.html', clientes=cliente)
 
 @clientes_views.route('/cliente/create/', methods=('GET', 'POST'))
 def create_cli():
-    form=CreateClientetForm()
+    form=CreateClienteForm()
     if form.validate_on_submit():
         nombre = form.nombre.data
         a_paterno = form.a_paterno.data
@@ -22,7 +22,7 @@ def create_cli():
         domicilio = form.domicilio.data
         cli=Cliente(nombre, a_paterno, a_materno, domicilio)
         cli.save()
-        return redirect(url_for('clientes.clientes'))
+        return redirect(url_for('clientes.cliente'))
     return render_template('clientes/create_cli.html', form=form)
 
 
