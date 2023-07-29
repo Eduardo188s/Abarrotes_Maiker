@@ -3,5 +3,196 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-    <h1>Pagina de Contactos</h1>
+<head>
+    <title>Sobre Nosotros</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+  
+      header {
+        background-color: rgb(154, 38, 38);
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+      }
+  
+      h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        font-size: 18px;
+      }
+  
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+  
+      .team-member {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+  
+      .team-member img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+  
+      .team-member h2 {
+        margin: 0;
+      }
+  
+      .team-member p {
+        margin: 0;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Acerca de nosotros</h1>
+    </header>
+  
+    <div class="container">
+      <h2>Nuestra Historia</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla faucibus tellus at est venenatis viverra. In eget purus id lorem luctus cursus.</p>
+      <p>Phasellus vulputate, justo eu consequat gravida, odio est varius ex, at iaculis neque mi ac ex.</p>
+  
+      <h2>Nuestro Equipo</h2>
+      <div class="team-member">
+        <img src="ruta-del-avatar1.jpg" alt="Miembro del equipo 1">
+        <div>
+          <h2>Nombre del Miembro 1</h2>
+          <p>Desarrollador Front-end</p>
+        </div>
+      </div>
+  
+      <div class="team-member">
+        <img src="ruta-del-avatar2.jpg" alt="Miembro del equipo 2">
+        <div>
+          <h2>Nombre del Miembro 2</h2>
+          <p>Diseñador Gráfico</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <h2>Contacto</h2>
+      <p>Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros.</p>
+    </div>
+
+    <head>
+      <title>Contactanos</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          margin: 0;
+          padding: 0;
+        }
+    
+        header {
+          background-color: rgb(154, 38, 38);
+          color: #fff;
+          text-align: center;
+          padding: 20px;
+        }
+    
+        h1 {
+          font-size: 36px;
+          margin-bottom: 10px;
+        }
+    
+        p {
+          font-size: 18px;
+        }
+    
+        .contact-info {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+    
+        .contact-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+    
+        .contact-item img {
+          width: 30px;
+          height: 30px;
+          margin-right: 10px;
+        }
+    
+        .contact-item a {
+          color: #333;
+          text-decoration: none;
+        }
+    
+        .contact-item a:hover {
+          color: #4285F4;
+        }
+    
+        .social-icons {
+          display: flex;
+        }
+    
+        .social-icons a {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          margin-right: 10px;
+          background-color: #4285F4;
+          color: #fff;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 40px;
+          font-size: 20px;
+          text-decoration: none;
+        }
+    
+        .social-icons a:hover {
+          background-color: #0F9D58;
+        }
+      </style>
+    </head>
+    <body>
+      <header>
+        <h1>Contactanos</h1>
+      </header>
+    
+      <div class="contact-info">
+        <div class="contact-item">
+          <img src="whatsapp-icon.png" alt="WhatsApp">
+          <a href="https://wa.me/1234567890">WhatsApp: +522471265587</a>
+        </div>
+    
+        <div class="contact-item">
+          <img src="email-icon.png" alt="Correo electrónico">
+          <a href="mailto:contacto@ejemplo.com">Correo electrónico: eduardodelarosa188@gmail.com</a>
+        </div>
+    
+        <div class="social-icons">
+          <a href="https://www.facebook.com" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+          <a href="https://twitter.com" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+          <a href="https://www.instagram.com" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+        </div>
+      </div>
+  </body>
+
+  
+    
 {% endblock %}

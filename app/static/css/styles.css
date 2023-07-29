@@ -52,7 +52,7 @@ nav li a:hover {
     color: white;
 }
 .btn:hover{
-    background-color: beige;
+    background-color: #ebcaca;
     color: black;
 }
 
@@ -60,43 +60,54 @@ nav li a:hover {
     width: 80%;
     margin: 0 auto;
 }
-
+/*Tablas*/
+table {
+    width: 100%;
+    border: 2px solid gray;
+    font-size: 16px;
+  }
+/*Producto*/
 #producto {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
-  #producto td, #producto th {
-    border: 1px solid #ddd;
+  #producto  td, #producto th {
+    border: 1px solid gray;
     padding: 8px;
   }
-
   #producto td {
     border: 1px solid gray;
     padding: 10px;
   }
+  #producto tr:nth-child(even){background-color: rgb(209, 209, 209);}
   
-  #producto tr:nth-child(even){background-color: #f2f2f2;}
+  #producto tr:hover {background-color: #ebcaca;}
   
-  #producto tr:hover {background-color: #ddd;}
-  
-  #producto th {
+  #producto th, #cliente {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: rgb(154, 38, 38);
     color: white;
   }
-
 .form-container {
-    width: 50%;
+    max-width: 410px;
     margin: 0 auto;
-    background-color: antiquewhite;
-    box-shadow: 10px 10px 10px 10px 10px 10px #444444;
-    display: flex;
-    justify-content: center;
+    padding: 30px;
+    background-color: #ebcaca;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
 }
+/*kdsfhskjfh*/
+form input[type="text"]{
 
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
 .form-container input {
     width: 400px;
     margin-bottom: 10px;
@@ -125,9 +136,3 @@ table form button{
 table a{
     text-decoration: none;
 }
-
-
-
-
-
-

@@ -32,7 +32,7 @@ Products
                             <i class="fa fa-pencil"></i>
                     </a>
                     <form action="{{ url_for('product.delete_pro', id_producto=pro.id_producto) }}" method="post">
-                        <button type="submit" onclick="return confirm('Seguro')">
+                        <button type="submit" onclick="return confirm('Seguro de que quieres eliminar')">
                             <i class="fa fa-trash"></i>
                         </button>
                     </form>
