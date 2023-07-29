@@ -42,11 +42,11 @@ class Proveedor:
     @staticmethod
     def get(id_proveedor):
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT nombre_proveedor, a_paterno, a_materno, direccion_proveedor, correo_proveedor, telefono_proveedor FROM proveedor WHERE id_proveedor = { id }"
+            sql = f"SELECT nombre_proveedor, a_paterno, a_materno, direccion_proveedor, correo_proveedor, telefono_proveedor FROM proveedor WHERE id_proveedor = { id_proveedor }"
             cursor.execute(sql)
             result = cursor.fetchone()
             print(result)
-            proveedor = Proveedor(result["nombre_proveedor"], result["a_paterno"], result["a_materno"], result["direccion_proveedor"], result["correo_proveedor"], result["telefono_proveedor"], id)
+            proveedor = Proveedor(result["nombre_proveedor"], result["a_paterno"], result["a_materno"], result["direccion_proveedor"], result["correo_proveedor"], result["telefono_proveedor"], id_provedor)
             return proveedor
         
     @staticmethod

@@ -25,12 +25,19 @@ def create_pro():
 
 @product_views.route('/producto/<int:id_producto>/update/', methods=('GET', 'POST'))
 def update_pro(id_producto):
+    form=UpdateProductForm()
     pro=Product.get(id_producto)
-    form=UpdateProductForm(obj=pro)
     if form.validate_on_submit():
-        form.populate_obj(pro)
+        pro.nombre_producto = form.nombre_producto.data
+        pro.marca_producto = form.marca_producto.data
+        pro.cb_producto = form.cb_producto.data
+        pro.precio_producto = form.precio_producto.data
         pro.save()
         return redirect(url_for('product.producto'))
+    form.nombre_producto.data = pro.nombre_producto
+    form.marca_producto.data = pro.marca_producto
+    form.cb_producto.data = pro.cb_producto
+    form.precio_producto.data = pro.precio_producto
     return render_template('product/create_pro.html', form=form)
 
 @product_views.route('/producto/<int:id_producto>/delete/', methods=('POST',))

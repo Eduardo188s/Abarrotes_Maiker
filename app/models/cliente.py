@@ -40,11 +40,11 @@ class Cliente:
     @staticmethod
     def get(id_cliente):
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT nombre, a_paterno, a_materno, domicilio FROM cliente WHERE id_cliente = { id }"
+            sql = f"SELECT nombre, a_paterno, a_materno, domicilio FROM cliente WHERE id_cliente = { id_cliente }"
             cursor.execute(sql)
             result = cursor.fetchone()
             print(result)
-            cliente = Cliente(result["nombre"], result["a_paterno"], result["a_materno"], result["domicilio"], id)
+            cliente = Cliente(result["nombre"], result["a_paterno"], result["a_materno"], result["domicilio"], id_cliente)
             return cliente
         
     @staticmethod

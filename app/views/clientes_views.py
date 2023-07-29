@@ -31,10 +31,10 @@ def update_cli(id_cliente):
     form=UpdateClienteForm()
     cli=Cliente.get(id)
     if form.validate_on_submit():
-        nombre = form.nombre.data
-        a_paterno = form.a_paterno.data
-        a_materno = form.a_materno.data
-        domicilio = form.domicilio.data
+        cli.nombre = form.nombre.data
+        cli.a_paterno = form.a_paterno.data
+        cli.a_materno = form.a_materno.data
+        cli.domicilio = form.domicilio.data
         cli.save()
         return redirect(url_for('clientes.clientes'))
     form.nombre.data=cli.nombre

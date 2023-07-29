@@ -29,16 +29,16 @@ def create_prov():
 
 
 @proveedor_views.route('/proveedor/<int:id>/update/', methods=('GET', 'POST'))
-def update_prov(id_producto):
-    form=UpdateProveedorForm()
+def update_prov(id_proveedor):
+    form=UpdateProveedorForm(obj=prov)
     prov=Proveedor.get(id)
     if form.validate_on_submit():
-        nombre_proveedor = form.nombre_proveedor.data
-        a_paterno = form.a_paterno.data
-        a_materno = form.a_materno.data
-        direccion_proveedor = form.direccion_proveedor.data
-        correo_proveedor = form.correo_proveedor.data
-        telefono_proveedor = form.telefono_proveedor.data
+        prov.nombre_proveedor = form.nombre_proveedor.data
+        prov.a_paterno = form.a_paterno.data
+        prov.a_materno = form.a_materno.data
+        prov.direccion_proveedor = form.direccion_proveedor.data
+        prov.correo_proveedor = form.correo_proveedor.data
+        prov.telefono_proveedor = form.telefono_proveedor.data
         
         prov.save()
         return redirect(url_for('proveedor.proveedor'))

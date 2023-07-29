@@ -40,11 +40,11 @@ class Product:
     @staticmethod
     def get(id_producto):
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT nombre_producto, marca_producto, cb_producto, precio_producto FROM producto WHERE id_producto = { id }"
+            sql = f"SELECT nombre_producto, marca_producto, cb_producto, precio_producto FROM producto WHERE id_producto = { id_producto }"
             cursor.execute(sql)
             result = cursor.fetchone()
             print(result)
-            producto = Product(result["nombre_producto"], result["marca_producto"], result["cb_producto"], result["precio_producto"], id)
+            producto = Product(result["nombre_producto"], result["marca_producto"], result["cb_producto"], result["precio_producto"], id_producto)
             return producto
         
     @staticmethod
