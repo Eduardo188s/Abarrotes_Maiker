@@ -61,11 +61,7 @@ nav li a:hover {
     margin: 0 auto;
 }
 /*Tablas*/
-table {
-    width: 100%;
-    border: 2px solid gray;
-    font-size: 16px;
-  }
+
 /*Producto*/
 #producto {
     font-family: Arial, Helvetica, sans-serif;
@@ -84,7 +80,81 @@ table {
   
   #producto tr:hover {background-color: #ebcaca;}
   
-  #producto th, #cliente {
+  #producto th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(154, 38, 38);
+    color: white;
+  }
+  /*Cliente*/
+  #cliente {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #cliente  td, #cliente th {
+    border: 1px solid gray;
+    padding: 8px;
+  }
+  #cliente td {
+    border: 1px solid gray;
+    padding: 10px;
+  }
+  #cliente tr:nth-child(even){background-color: rgb(209, 209, 209);}
+  #cliente tr:hover {background-color: #ebcaca;}
+  
+  #cliente th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(154, 38, 38);
+    color: white;
+  }
+  /*Proveedor*/
+  #proveedor {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #proveedor  td, #proveedor th {
+    border: 1px solid gray;
+    padding: 8px;
+  }
+  #producto td {
+    border: 1px solid gray;
+    padding: 10px;
+  }
+  #provedor tr:nth-child(even){background-color: rgb(209, 209, 209);}
+  
+  #producto tr:hover {background-color: #ebcaca;}
+  
+  #proveedor th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(154, 38, 38);
+    color: white;
+  }
+  /*Compra*/
+  #compra {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #compra  td, #compra th {
+    border: 1px solid gray;
+    padding: 8px;
+  }
+  #compra td {
+    border: 1px solid gray;
+    padding: 10px;
+  }
+  #compra tr:nth-child(even){background-color: rgb(209, 209, 209);}
+  
+  #compra tr:hover {background-color: #ebcaca;}
+  
+  #compra th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
