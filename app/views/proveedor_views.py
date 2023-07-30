@@ -1,7 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for
-
 from models.proveedor import Proveedor
-
 from forms.proveedor_forms import CreateProveedorForm, UpdateProveedorForm
 
 proveedor_views = Blueprint('proveedor',__name__)
@@ -9,8 +7,8 @@ proveedor_views = Blueprint('proveedor',__name__)
 @proveedor_views.route('/proveedor/')
 def proveedor():
     #Consultas categorias de DB
-    proveedor = Proveedor.get_all()
-    return render_template('Proveedor/proveedor.html', Proveedor=proveedor)
+    proveedores = Proveedor.get_all()
+    return render_template('proveedor/proveedor.html', proveedor=proveedores)
 
 @proveedor_views.route('/proveedor/create/', methods=('GET', 'POST'))
 def create_prov():
@@ -28,10 +26,10 @@ def create_prov():
     return render_template('proveedor/create_prov.html', form=form)
 
 
-@proveedor_views.route('/proveedor/<int:id>/update/', methods=('GET', 'POST'))
+@proveedor_views.route('/proveedor/<int:id_proveedor>/update/', methods=('GET', 'POST'))
 def update_prov(id_proveedor):
-    form=UpdateProveedorForm(obj=prov)
-    prov=Proveedor.get(id)
+    form=UpdateProveedorForm()
+    prov=Proveedor.get(id_proveedor)
     if form.validate_on_submit():
         prov.nombre_proveedor = form.nombre_proveedor.data
         prov.a_paterno = form.a_paterno.data
@@ -39,20 +37,19 @@ def update_prov(id_proveedor):
         prov.direccion_proveedor = form.direccion_proveedor.data
         prov.correo_proveedor = form.correo_proveedor.data
         prov.telefono_proveedor = form.telefono_proveedor.data
-        
         prov.save()
         return redirect(url_for('proveedor.proveedor'))
     form.nombre_proveedor.data=prov.nombre_proveedor
-    form.a_paterno.data=prov.aPaterno_proveedor_proveedor
-    form.a_materno.data=prov.aMaterno_proveedor_proveedor
-    form.direccion_proveedor_proveedor.data=prov.direccion_proveedor_proveedor
-    form.correo_proveedor_proveedor.data=prov.correo_proveedor_proveedor
-    form.telefono_proveedor_proveedor.data=prov.telefono_proveedor_proveedor
+    form.a_paterno.data=prov.a_paterno
+    form.a_materno.data=prov.a_materno
+    form.direccion_proveedor.data=prov.direccion_proveedor
+    form.correo_proveedor.data=prov.correo_proveedor
+    form.telefono_proveedor.data=prov.telefono_proveedor
     return render_template('proveedor/create_prov.html', form=form)
 
 
 @proveedor_views.route('/proveedor/<int:id_proveedor>/delete/', methods=('POST',))
-def delete_prov(id_provedor):
-    prov=Proveedor.get(id)
+def delete_prov(id_proveedor):
+    prov=Proveedor.get(id_proveedor)
     prov.delete()
     return redirect(url_for('proveedor.proveedor'))

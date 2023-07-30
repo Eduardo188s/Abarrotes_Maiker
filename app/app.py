@@ -4,7 +4,7 @@ from flask import Flask
 from views.home_views import home_views
 from views.product_views import product_views
 from views.proveedor_views import proveedor_views
-from views.clientes_views import clientes_views
+from views.cliente_views import cliente_views
 from views.user_views import user_views
 from views.error_views import error_views
 
@@ -18,7 +18,7 @@ app.config['SECRET_KEY'] = 'my secret key'
 app.register_blueprint(home_views)
 app.register_blueprint(product_views)
 app.register_blueprint(proveedor_views)
-app.register_blueprint(clientes_views)
+app.register_blueprint(cliente_views)
 app.register_blueprint(user_views)
 app.register_blueprint(error_views)
 

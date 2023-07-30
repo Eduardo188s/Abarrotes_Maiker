@@ -46,7 +46,7 @@ class Proveedor:
             cursor.execute(sql)
             result = cursor.fetchone()
             print(result)
-            proveedor = Proveedor(result["nombre_proveedor"], result["a_paterno"], result["a_materno"], result["direccion_proveedor"], result["correo_proveedor"], result["telefono_proveedor"], id_provedor)
+            proveedor = Proveedor(result["nombre_proveedor"], result["a_paterno"], result["a_materno"], result["direccion_proveedor"], result["correo_proveedor"], result["telefono_proveedor"], id_proveedor)
             return proveedor
         
     @staticmethod
