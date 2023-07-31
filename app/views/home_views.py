@@ -10,4 +10,4 @@ def home():
 @home_views.route("/contact/")
 def contact():
     user = "Eduardo"
-    return render_template('home/contact.html', user=user)
+    return render_template('home/contact.html', name=user)
