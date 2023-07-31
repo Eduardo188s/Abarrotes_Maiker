@@ -71,7 +71,7 @@
   
       <h2>Nuestro Equipo</h2>
       <div class="team-member">
-        <img src="ruta-del-avatar1.jpg" alt="Miembro del equipo 1">
+        <img src="{{ url_for('static', filename='images/persona 1.png')}}"" alt="Miembro del equipo 1">
         <div>
           <h2>Erica Martinez Lopez</h2>
           <p>Fundadora de la tienda</p>
@@ -79,7 +79,7 @@
       </div>
   
       <div class="team-member">
-        <img src="ruta-del-avatar2.jpg" alt="Miembro del equipo 2">
+        <img src="{{ url_for('static', filename='images/persona2.jpg')}}"" alt="Miembro del equipo 2">
         <div>
           <h2>Jose Peres Armas</h2>
           <p>Fundador de la tienda</p>
@@ -176,19 +176,19 @@
     
       <div class="contact-info">
         <div class="contact-item">
-          <img src="whatsapp-icon.png" alt="WhatsApp">
+          <img src="{{ url_for('static', filename='images/whatsapp.png')}}" alt="WhatsApp">
           <a href="https://wa.me/1234567890">WhatsApp: +522471265587</a>
         </div>
     
         <div class="contact-item">
-          <img src="email-icon.png" alt="Correo electrónico">
+          <img src="{{ url_for('static', filename='images/gmail.png')}}"" alt="Correo electrónico">
           <a href="mailto:contacto@ejemplo.com">Correo electrónico: eduardodelarosa188@gmail.com</a>
         </div>
     
         <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
-          <a href="https://twitter.com" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
-          <a href="https://www.instagram.com" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+          <a href="https://www.facebook.com" target="_blank"><img src="{{ url_for('static', filename='images/facebook.png')}}" width="100%" alt="Facebook"></a>
+          <a href="https://twitter.com" target="_blank"><img src="{{ url_for('static', filename='images/twitter.png')}}" width="100%" alt="Twitter"></a>
+          <a href="https://www.instagram.com" target="_blank"><img src="{{ url_for('static', filename='images/instagram.jpg')}}" width="100%" alt="Instagram"></a>
         </div>
       </div>
   </body>
