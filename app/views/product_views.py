@@ -18,7 +18,8 @@ def create_pro():
         marca_producto = form.marca_producto.data
         cb_producto = form.cb_producto.data
         precio_producto = form.precio_producto.data
-        pro=Product(nombre_producto, marca_producto, cb_producto, precio_producto)
+        image = form.image.data
+        pro=Product(nombre_producto, marca_producto, cb_producto, precio_producto, image)
         pro.save()
         return redirect(url_for('product.producto'))
     return render_template('product/create_pro.html', form=form)
@@ -32,13 +33,15 @@ def update_pro(id_producto):
         pro.marca_producto = form.marca_producto.data
         pro.cb_producto = form.cb_producto.data
         pro.precio_producto = form.precio_producto.data
+        pro.image = form.image.data
         pro.save()
         return redirect(url_for('product.producto'))
     form.nombre_producto.data = pro.nombre_producto
     form.marca_producto.data = pro.marca_producto
     form.cb_producto.data = pro.cb_producto
     form.precio_producto.data = pro.precio_producto
-    return render_template('product/create_pro.html', form=form)
+    form.image = product.image
+    return render_template('product/create_pro.html', form=form, image=image)
 
 @product_views.route('/producto/<int:id_producto>/delete/', methods=('POST',))
 def delete_pro(id_producto):

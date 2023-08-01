@@ -45,6 +45,10 @@ Crea Nuevo Producto
                  {% endif %}
         </div>
         <div>
+                {{ form.image.label }}
+                {{ form.image() }}
+        </div>
+        <div>
                 {{ form.submit(class="btn") }}
         </div>
         

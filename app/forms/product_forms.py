@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, FloatField
 from wtforms.validators import DataRequired, Length
+from flask_wtf.file import FileField, FileAllowed
+
 
 class CreateProductForm(FlaskForm):
     nombre_producto=StringField('Nombre',
@@ -12,9 +14,13 @@ class CreateProductForm(FlaskForm):
     cb_producto=StringField('CB',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
-    precio_producto=StringField('Precio',
+    precio_producto=FloatField('Precio',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
+
+    image = FileField('Imagen de Producto', 
+                      validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Solo imagenes!')])
+                                     
     
     submit=SubmitField('Guardar')
 
@@ -28,7 +34,10 @@ class UpdateProductForm(FlaskForm):
     cb_producto=StringField('CB',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
-    precio_producto=StringField('Precio',
+    precio_producto=FloatField('Precio',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
+
+    image = FileField('Imagen de Producto', 
+                      validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Solo imagenes!')])
     submit=SubmitField('Actualizar')
