@@ -42,7 +42,7 @@ def update_pro(id_producto):
     form.marca_producto.data = pro.marca_producto
     form.cb_producto.data = pro.cb_producto
     form.precio_producto.data = pro.precio_producto
-    form.image.data = pro.image
+    form.image = pro.image
     return render_template('product/create_pro.html', form=form)
 
 

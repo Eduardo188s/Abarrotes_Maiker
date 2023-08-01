@@ -10,25 +10,17 @@
 <body>
     <nav>
         <ul>
-            {% if name %}
             <li><a href="{{ url_for('home.home') }}">Inicio</a></li>
             <li><a href="{{ url_for('home.contact') }}">Acerca de</a></li>
-            {% else %}
-            {% endif %}
             {% if user %}
             <li><a href="{{ url_for('product.producto') }}">Productos</a></li>
             <li><a href="{{ url_for('proveedor.proveedor') }}">Proveedores</a></li>
             <li><a href="{{ url_for('cliente.cliente') }}">Clientes</a></li>
             <li><a href="{{ url_for('compra.compra') }}">Compra</a></li>
-            <li><a href="{{ url_for('home.home') }}">Cerrar Sesión</a></li>
+            <li><a href="{{ url_for('home.home') }}"">Cerrar Sesión</a></li>
             {% else %}
-            {% endif %}
-            {% if name %}
             <li><a href="{{ url_for('user.register') }}">Registro</a></li>
             <li><a href="{{ url_for('user.login') }}">Iniciar Sesión</a></li>
-
-
-            {% else %}
             {% endif %}
         </ul>
     </nav>
