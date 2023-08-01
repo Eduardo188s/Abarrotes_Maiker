@@ -42,8 +42,9 @@ def update_pro(id_producto):
     form.marca_producto.data = pro.marca_producto
     form.cb_producto.data = pro.cb_producto
     form.precio_producto.data = pro.precio_producto
-    form.image = pro.image
-    return render_template('product/create_pro.html', form=form, image=image)
+    form.image.data = pro.image
+    return render_template('product/create_pro.html', form=form)
+
 
 @product_views.route('/producto/<int:id_producto>/delete/', methods=('POST',))
 def delete_pro(id_producto):
