@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Proveedor
+{% endblock title %}
+
+{% block content %}
+    <h1>Proveedores</h1>
+    <a href="{{ url_for('proveedor.create_prov') }}" class="btn">Nuevo Proveedor</a>
+    <h2>Lista de proveedores</h2>
+    <table id="proveedor">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Direccion</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prov in proveedor %}
+                <tr>
+                    <td>{{ prov.id_proveedor }}</td>
+                    <td>{{ prov.nombre_proveedor }}</td>
+                    <td>{{ prov.a_paterno }}</td>
+                    <td>{{ prov.a_materno }}</td>
+                    <td>{{ prov.direccion_proveedor }}</td>
+                    <td>{{ prov.correo_proveedor }}</td>
+                    <td>{{ prov.telefono_proveedor }}</td>
+                    <td>
+                            <a href="{{ url_for('proveedor.update_prov', id_proveedor=prov.id_proveedor) }}">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        <form action="{{ url_for('proveedor.delete_prov', id_proveedor=prov.id_proveedor) }}" method="post">
+                            <button type="submit" onclick="return confirm('Seguro')">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

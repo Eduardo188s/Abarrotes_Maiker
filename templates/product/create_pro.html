@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crea Nuevo Producto 
+{% endblock %}
+    
+{% block content %}
+<div class="form-container">
+   <form method="post">
+        {{ form.csrf_token }}
+        <div>
+                {{ form.nombre_producto.label }}
+                {{ form.nombre_producto() }}
+                {% if form.nombre_producto.errors %}
+                {% for error in form.nombre_producto.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                {% endif %}
+        </div>
+        <div>
+                {{ form.marca_producto.label }}
+                {{ form.marca_producto() }}
+                {% if form.marca_producto.errors %}
+                   {% for error in form.marca_producto.errors%}
+                   <p>{{ error }}</p>
+                   {% endfor %}
+                {% endif %}
+        </div>
+        <div>
+                {{ form.cb_producto.label }}
+                {{ form.cb_producto() }}
+                {% if form.cb_producto.errors %}
+                 {% for error in form.cb_producto.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.precio_producto.label }}
+                {{ form.precio_producto() }}
+                {% if form.precio_producto.errors %}
+                 {% for error in form.precio_producto.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.image.label }}
+                {{ form.image() }}
+        </div>
+        <div>
+                {{ form.submit(class="btn") }}
+        </div>
+        
+   </form>
+</div>
+{% endblock %}
+    

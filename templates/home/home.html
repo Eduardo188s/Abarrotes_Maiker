@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<head>
+  <title>Bienvenidos a Abarrotes Maiker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: rgb(154, 38, 38);
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bienvenidos a Abarrotes Maiker</h1>
+    <p>Descubre una gran variedad de productos de muy buena calidad con nosotros.</p>
+    
+  </header>
+
+  <!-- Otras secciones del sitio web aquí -->
+
+  <section id="seccion-destacada">
+    <h2><center>¡Descubre nuestro gran contenido de productos!</center></h2>
+    <p><center>Te ofrecemos una amplia variedad de productos de muy buena calidad en el cual encontraras lo que nesecites.¡No te lo pierdas!</center></h2></p>
+  </section>
+
+  <!-- Otras secciones del sitio web aquí -->
+
+</body>
+
+<img src="{{ url_for('static', filename='images/tienda.jpg') }}" width="100%" alt="wqdwqd">
+<p>Autor: {{ name }}</p>
+{% endblock %}

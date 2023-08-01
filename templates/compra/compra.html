@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Compras
+{% endblock title %}
+
+{% block content %}
+    <h1>Compras</h1>
+    <a href="{{ url_for('compra.create_com') }}" class="btn">Nueva Compra</a>
+    <h2>Lista de Productos</h2>
+    <table id="compra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>id_ticket</th>
+                <th>id_cliente</th>
+                <th>id_producto</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for com in compra %}
+                <tr>
+                    <td>{{ com.id_compra }}</td>
+                    <td>{{ com.id_ticket }}</td>
+                    <td>{{ com.id_cliente }}</td>
+                    <td>{{ com.id_producto }}</td>
+                    <td>{{ com.fecha_compra }}</td>
+                    <td>{{ com.total_compra }}</td>
+                    <td>
+                        <a href="{{ url_for('compra.update_com', id_compra=com.id_compra) }}">
+                            <i class="fa fa-pencil"></i>
+                    </a>
+                    <form action="{{ url_for('compra.delete_com', id_compra=com.id_compra) }}" method="post">
+                        <button type="submit" onclick="return confirm('Seguro de que quieres eliminar')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
