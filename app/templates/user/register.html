@@ -26,6 +26,10 @@
             {% endif %}
         </div>
         <div>
+            {{ form.rol.label }}
+            {{ form.rol() }}
+        </div>
+        <div>
             {{ form.password.label }}
             {{ form.password() }}
             {% if form.password.errors %}

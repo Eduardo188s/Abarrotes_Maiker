@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import (StringField, PasswordField, EmailField, 
+from wtforms import (StringField, PasswordField, EmailField, SelectField,
                      SubmitField, ValidationError)
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_wtf.file import FileField, FileRequired, FileAllowed
@@ -27,7 +27,10 @@ class RegisterForm(FlaskForm):
         ######## Consultar si el username existe en la base de datos #######
         if User.check_username(field.data):
             raise ValidationError('El username ya existe')
-        
+
+class RegisterUserAdmin(RegisterForm):
+    rol = SelectField('Rol', choices=[('customer', 'Customer'), ('admin', 'Administrador'), ('cajero', 'Cajero')])
+
 ################# Formulario de Login ##################
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
