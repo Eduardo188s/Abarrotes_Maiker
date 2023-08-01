@@ -16,7 +16,6 @@ Compras
                 <th>id_cliente</th>
                 <th>id_producto</th>
                 <th>Fecha</th>
-                <th>Cantidad</th>
                 <th>Total</th>
                 <th>Acciones</th>
             </tr>
@@ -29,7 +28,6 @@ Compras
                     <td>{{ com.id_cliente }}</td>
                     <td>{{ com.id_producto }}</td>
                     <td>{{ com.fecha_compra }}</td>
-                    <td>{{ com.cantidad_compra }}</td>
                     <td>{{ com.total_compra }}</td>
                     <td>
                         <a href="{{ url_for('compra.update_com', id_compra=com.id_compra) }}">

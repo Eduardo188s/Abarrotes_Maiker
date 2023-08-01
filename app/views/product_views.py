@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, flash, url_for
 from models.products import Product
 from forms.product_forms import CreateProductForm, UpdateProductForm
 
+from utils.file_handler import save_image
+
 product_views=Blueprint('product',__name__)
 
 @product_views.route('/producto/')
@@ -40,7 +42,7 @@ def update_pro(id_producto):
     form.marca_producto.data = pro.marca_producto
     form.cb_producto.data = pro.cb_producto
     form.precio_producto.data = pro.precio_producto
-    form.image = product.image
+    form.image = pro.image
     return render_template('product/create_pro.html', form=form, image=image)
 
 @product_views.route('/producto/<int:id_producto>/delete/', methods=('POST',))

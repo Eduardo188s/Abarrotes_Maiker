@@ -17,10 +17,10 @@
             <li><a href="{{ url_for('proveedor.proveedor') }}">Proveedores</a></li>
             <li><a href="{{ url_for('cliente.cliente') }}">Clientes</a></li>
             <li><a href="{{ url_for('compra.compra') }}">Compra</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="{{ url_for('home.home') }}"">Cerrar Sesión</a></li>
             {% else %}
-            <li><a href="{{ url_for('user.login') }}">Iniciar Sesión</a></li>
             <li><a href="{{ url_for('user.register') }}">Registro</a></li>
+            <li><a href="{{ url_for('user.login') }}">Iniciar Sesión</a></li>
             {% endif %}
         </ul>
     </nav>
