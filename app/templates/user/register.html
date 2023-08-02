@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<h1><center>Registrarse</center></h1>
+<h1><center>Registrate</center></h1>
 <div class="form-container">
     <form method="post">
         {{ form.csrf_token }}
@@ -24,6 +24,10 @@
                 <p>{{ error }}</p>
                 {% endfor %}
             {% endif %}
+        </div>
+        <div>
+            {{ form.rol.label }}
+            {{ form.rol() }}
         </div>
         <div>
             {{ form.password.label }}
@@ -49,4 +53,3 @@
     </form>
 </div>
 {% endblock %}
-    

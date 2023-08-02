@@ -5,9 +5,9 @@ Crea Nuevo Producto
 {% endblock %}
     
 {% block content %}
-<h1><center>Nuevo Producto</center></h1>
+<h1><center>Nuevo producto</center></h1>
 <div class="form-container">
-   <form method="post">
+   <form method="post" enctype="multipart/form-data">
         {{ form.csrf_token }}
         <div>
                 {{ form.nombre_producto.label }}

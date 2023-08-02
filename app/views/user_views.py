@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, url_for, flash, abort
 
 from models.users import User
 
-from forms.users_forms import LoginForm, RegisterForm, ProfileForm
+from forms.users_forms import LoginForm, RegisterForm, ProfileForm, RegisterUserAdmin
 
 from utils.file_handler import save_image
 
@@ -10,7 +10,7 @@ user_views=Blueprint('user',__name__)
 
 @user_views.route('/users/register/', methods=('GET', 'POST'))
 def register():
-    form = RegisterForm()
+    form = RegisterUserAdmin()
 
     if form.validate_on_submit():
         username = form.username.data
