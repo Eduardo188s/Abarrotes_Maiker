@@ -25,7 +25,7 @@ class Product:
         # Update an Object
         else:
             with mydb.cursor() as cursor:
-                sql = "UPDATE producto SET nombre_producto = %s, marca_producto = %s, cb_producto = %s, precio_producto = %s, image= %s, WHERE id_producto = %s"
+                sql = "UPDATE producto SET nombre_producto = %s, marca_producto = %s, cb_producto = %s, precio_producto = %s, image= %s WHERE id_producto = %s"
                 val = (self.nombre_producto, self.marca_producto, self.cb_producto, self.precio_producto, self.image, self.id_producto)
                 cursor.execute(sql, val)
                 mydb.commit()

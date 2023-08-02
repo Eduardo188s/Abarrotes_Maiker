@@ -36,8 +36,6 @@ def update_pro(id_producto):
         pro.marca_producto = form.marca_producto.data
         pro.cb_producto = form.cb_producto.data
         pro.precio_producto = form.precio_producto.data
-        f = form.image.data
-        pro.image = save_image(f, 'images/products')
         pro.save()
         return redirect(url_for('product.producto'))
     form.nombre_producto.data = pro.nombre_producto
