@@ -19,6 +19,15 @@
       text-align: center;
       padding: 50px;
     }
+    .footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
 
     h1 {
       font-size: 36px;
@@ -31,13 +40,13 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Bienvenidos a Abarrotes Maiker</h1>
-    <p>Descubre una gran variedad de productos de muy buena calidad con nosotros.</p>
-    
+    <p>Descubre una gran variedad de productos de muy buena calidad con nosotros.</p> 
   </header>
-
+  
   <!-- Otras secciones del sitio web aquí -->
 
   <section id="seccion-destacada">
@@ -49,6 +58,6 @@
 
 </body>
 
-<img src="{{ url_for('static', filename='images/tienda.png') }}" width="100%" alt="wqdwqd">
+<img src="{{ url_for('static', filename='images/tienda.jpg') }}" width="100%" alt="wqdwqd">
 <p>Autor: {{ name }}</p>
 {% endblock %}
