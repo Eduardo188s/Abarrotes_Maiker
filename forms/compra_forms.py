@@ -15,6 +15,9 @@ class CreateCompraForm(FlaskForm):
     fecha_compra=StringField('fecha_compra',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
+    cantidad_compra=StringField('cantidad_compra',
+                         validators=[DataRequired(),
+                                     Length(min=3,max=30)])
     
     total_compra=StringField('total_compra',
                          validators=[DataRequired(),
@@ -33,6 +36,9 @@ class UpdateCompraForm(FlaskForm):
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
     fecha_compra=StringField('fecha_compra',
+                         validators=[DataRequired(),
+                                     Length(min=3,max=30)])
+    cantidad_compra=StringField('cantidad_compra',
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
     
