@@ -71,32 +71,66 @@ nav li a:hover {
 }
 
 /* Tablas */
+/* Tablas */
 table {
     font-family: 'Roboto', sans-serif;
     border-collapse: collapse;
     width: 100%;
+    border: 1px solid #ddd;
 }
 
 table td, table th {
     border: 1px solid #ddd;
     padding: 10px;
+    text-align: left;
 }
 
 table tr:nth-child(even) {
-    background-color: #d1d1d1;
+    background-color: #f2f2f2;
 }
 
 table tr:hover {
-    background-color: #ebcaca;
+    background-color: #e5e5e5;
 }
 
 table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
+    padding: 12px;
     background-color: #9a2626;
     color: #fff;
+    font-weight: 700;
 }
+
+/* Estilos para enlaces en tablas */
+table a {
+    text-decoration: none;
+    color: #9a2626;
+    font-weight: 700;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+/* Botones en tablas */
+table .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    background-color: #9a2626;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+table .btn:hover {
+    background-color: #ebcaca;
+    color: #000;
+    cursor: pointer;
+}
+
 
 .form-container {
     max-width: 400px;

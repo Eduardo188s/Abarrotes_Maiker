@@ -16,7 +16,7 @@ class Product:
         # Create a New Object in DB
         if self.id_producto is None:
             with mydb.cursor() as cursor:
-                sql = "INSERT INTO producto(nombre_producto, marca_producto, cb_producto, precio_producto, image) VALUES(%s, %s, %s, %s, %s, %s)"
+                sql = "INSERT INTO producto(nombre_producto, marca_producto, cb_producto, precio_producto, image) VALUES(%s, %s, %s, %s, %s)"
                 val = (self.nombre_producto, self.marca_producto, self.cb_producto, self.precio_producto, self.image)
                 cursor.execute(sql, val)
                 mydb.commit()
