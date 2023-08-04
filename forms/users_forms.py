@@ -29,7 +29,7 @@ class RegisterForm(FlaskForm):
             raise ValidationError('El username ya existe')
 
 class RegisterUserAdmin(RegisterForm):
-    rol = SelectField('Rol', choices=[('customer', 'Customer'), ('admin', 'Administrador'), ('cajero', 'Cajero')])
+    role = SelectField('role', choices=[('admin', 'Administrador'), ('cajero', 'Cajero')])
 
 ################# Formulario de Login ##################
 class LoginForm(FlaskForm):

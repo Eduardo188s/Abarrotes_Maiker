@@ -17,10 +17,14 @@ footer {
     text-align: right; /* Alinea el contenido del footer a la izquierda */
 }
     .logo-footer {
-        width: 80px; /* Tamaño pequeño */
+        width: 60px; /* Tamaño pequeño */
         margin-right: 50px; /* Espacio entre el logo y el texto */
         vertical-align: middle;
     }
+.url{
+    color: rgb(228, 193, 193); /* Color inicial del texto */
+    transition: color 0.3s ease;
+}
 nav {
     display: flex;
     justify-content: center;
@@ -66,12 +70,12 @@ nav li a:hover {
     font-weight: 700;
     text-align: center;
     color: #fff;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 .btn:hover {
-    background-color: #ebcaca;
-    color: #000;
+    background-color:gray;
+    color: white;
 }
 
 .container {
@@ -82,18 +86,16 @@ nav li a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
-
-/* Tablas */
 /* Tablas */
 table {
     font-family: 'Roboto', sans-serif;
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid #6e6a6a;
 }
 
 table td, table th {
-    border: 1px solid #ddd;
+    border: 1px solid #cccbcb;
     padding: 10px;
     text-align: left;
 }
@@ -103,7 +105,7 @@ table tr:nth-child(even) {
 }
 
 table tr:hover {
-    background-color: #e5e5e5;
+    background-color: #ecc6c6;
 }
 
 table th {
@@ -132,14 +134,14 @@ table .btn {
     background-color: #9a2626;
     border-radius: 5px;
     text-decoration: none;
-    color: #fff;
+    color: #edb5b5;
     font-weight: 700;
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
 }
 
 table .btn:hover {
-    background-color: #ebcaca;
+    background-color: #f6c6c6;
     color: #000;
     cursor: pointer;
 }
@@ -149,7 +151,7 @@ table .btn:hover {
     max-width: 400px;
     margin: 0 auto;
     padding: 30px;
-    background-color: #ebcaca;
+    background-color: #daabab;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -168,7 +170,7 @@ form input[type="text"] {
 }
 
 .fa {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .fa-pencil {

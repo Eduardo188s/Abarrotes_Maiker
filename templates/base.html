@@ -10,6 +10,7 @@
 <body>
     <nav>
         <ul>
+            <img src="{{ url_for('static', filename='images/maiker.jpg')}}" alt="Logo de Mi Sitio" class="logo-footer">
             {% if user %}
             <li><a href="{{ url_for('home.home') }}">Inicio</a></li>
             <li><a href="{{ url_for('home.contact') }}">Acerca de</a></li>
@@ -40,7 +41,7 @@
 
         <p>© 2023 Todos los derechos reservados.</p>
         <br>
-        <p><a href="https://www.bing.com/search?pglt=41&q=uttlaxcala&cvid=9028f3c5c43846fd88b1616c2eb7ecde&aqs=edge.1.69i57j0l5j69i60l3.3684j0j1&FORM=ANAB01&PC=ASTS&cp=19.376047%7E-97.953324&lvl=16.6">Visita nuestro lugar</a></p>
+        <p><a href="https://goo.gl/maps/zLWxYZyaUy5npMsW9" class="url">Visita nuestro lugar</a></p>
         
     </footer>
 </body>

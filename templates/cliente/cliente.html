@@ -28,15 +28,19 @@ Clientes
                         <td>{{ cli.a_materno }}</td>
                         <td>{{ cli.domicilio }}</td>
                         <td>
-                            <a href="{{ url_for('cliente.update_cli', id_cliente=cli.id_cliente) }}">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                            <form
-                                action="{{ url_for('cliente.delete_cli', id_cliente=cli.id_cliente) }}" method="post">
-                                <button type="submit" onclick="return confirm('Seguro de que quieres Eliminar')">
-                                    <i class="fa fa-trash"></i>
+                            <center>
+                                <button>
+                                    <a href="{{ url_for('cliente.update_cli', id_cliente=cli.id_cliente) }}">
+                                        <i class="fa fa-pencil"></i>
                                 </button>
-                            </form>
+                                </a>
+                                <form
+                                    action="{{ url_for('cliente.delete_cli', id_cliente=cli.id_cliente) }}" method="post">
+                                    <button type="submit" onclick="return confirm('Seguro de que quieres Eliminar')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </center>
                         </td>
                     </tr>
                 {% endfor %}
