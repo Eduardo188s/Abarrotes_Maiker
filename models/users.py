@@ -28,8 +28,8 @@ class User:
         if self.id is None:
             with mydb.cursor() as cursor:
                 self.password = generate_password_hash(self.password)
-                sql = "INSERT INTO users(username, password, email) VALUES(%s, %s, %s)"
-                val = (self.username, self.password, self.email)
+                sql = "INSERT INTO users(username, password, email, role) VALUES(%s, %s, %s, %s)"
+                val = (self.username, self.password, self.email, self.role)
                 cursor.execute(sql, val)
                 mydb.commit()
                 self.id = cursor.lastrowid

@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, url_for, flash, abort
+from flask import Blueprint, redirect, render_template, url_for, flash, abort, request
 
 from models.users import User
 
@@ -16,8 +16,9 @@ def register():
         username = form.username.data
         password = form.password.data
         email = form.email.data
+        role=request.form["role"]
 
-        user = User(username, password, email)
+        user = User(username, password, email, role=role)
         user.save()
 
         return redirect(url_for('user.login'))
