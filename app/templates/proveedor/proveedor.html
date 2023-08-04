@@ -31,15 +31,21 @@ Proveedor
                     <td>{{ prov.direccion_proveedor }}</td>
                     <td>{{ prov.correo_proveedor }}</td>
                     <td>{{ prov.telefono_proveedor }}</td>
+
                     <td>
-                            <a href="{{ url_for('proveedor.update_prov', id_proveedor=prov.id_proveedor) }}">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                        <form action="{{ url_for('proveedor.delete_prov', id_proveedor=prov.id_proveedor) }}" method="post">
-                            <button type="submit" onclick="return confirm('Seguro')">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </form>
+                        <center>
+                                <button>
+                                    <a href="{{ url_for('proveedor.update_prov', id_proveedor=prov.id_proveedor) }}">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </button>
+                            
+                            <form action="{{ url_for('proveedor.delete_prov', id_proveedor=prov.id_proveedor) }}" method="post">
+                                <button type="submit" onclick="return confirm('Seguro')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </center>
                     </td>
                 </tr>
             {% endfor %}
