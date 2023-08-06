@@ -3,3 +3,4 @@ mysql-connector-python
 flask-wtf
 email_validator
 flask.login
+flask-Session

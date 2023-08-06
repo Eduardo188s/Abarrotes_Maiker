@@ -1,12 +1,22 @@
-from flask import Blueprint, redirect, render_template, url_for, flash, abort, request
+from flask import Blueprint, Flask, redirect, render_template, url_for, flash, abort, request, session
+
+from flask_session import Session
 
 from models.users import User
+from models.rol import Role
 
 from forms.users_forms import LoginForm, RegisterForm, ProfileForm, RegisterUserAdmin
 
 from utils.file_handler import save_image
 
 user_views=Blueprint('user',__name__)
+
+app = Flask(__name__)
+
+app.config["SESSION_PERMANET"] = False
+app.config["SESSION TYPO"] = "filesystem"
+Session(app)
+
 
 @user_views.route('/users/register/', methods=('GET', 'POST'))
 def register():
@@ -32,11 +42,25 @@ def login():
         username = form.username.data
         password = form.password.data
         user = User.get_by_password(username, password)
+        session["name"] = username
+        role = Role.get(user.role)
+        session["role"] = role.nombre
+        print(role.nombre )
+        
+
         if not user:
             flash('Verifica tus Datos')
         else:
             return render_template('home/home.html', user=user)
     return render_template('user/login.html', form=form)
+
+@user_views.route('/users/logout/', methods=('GET', 'POST'))
+def logout():
+    form = LoginForm()
+
+    session["name"] = None
+    session["role"] = None
+    return render_template('home/home.html', form=form)
 
 @user_views.route('/users/<int:id>/profile/', methods=('GET', 'POST'))
 def profile(id):
@@ -55,3 +79,4 @@ def profile(id):
     form.last_name.data = user.last_name
     image = user.image
     return render_template('user/profile.html', form=form, image=image)
+
