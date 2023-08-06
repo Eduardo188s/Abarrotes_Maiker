@@ -1,13 +1,23 @@
-from flask import Blueprint, render_template, request, redirect, flash, url_for
+from flask import Blueprint, render_template, request, redirect, flash, url_for, Flask, session
 from models.products import Product
+from flask_session import Session
 from forms.product_forms import CreateProductForm, UpdateProductForm
+from utils.file_handler import save_image
 
 product_views=Blueprint('product',__name__)
 
-from utils.file_handler import save_image
+app = Flask(__name__)
+
+app.config["SESSION_PERMANET"] = False
+app.config["SESSION TYPO"] = "filesystem"
+Session(app)
+
 
 @product_views.route('/producto/')
 def producto():
+
+    if not session.get("name"):
+        return redirect("/Login")
     #Consultas categorias de DB
     productos = Product.get_all()
     return render_template('product/producto.html', producto=productos)

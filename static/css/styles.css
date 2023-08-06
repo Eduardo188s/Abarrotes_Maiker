@@ -163,6 +163,10 @@ form input[type="text"] {
     border: 1px solid #ddd;
     border-radius: 3px;
 }
+.team-member{
+    padding: 20px;
+    width: 100%;
+}
 
 .form-container input {
     width: 100%;
