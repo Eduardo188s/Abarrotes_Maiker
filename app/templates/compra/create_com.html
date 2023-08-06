@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crea Nueva Compra
+{% endblock %}
+    
+{% block content %}
+<div class="form-container">
+   <form method="post">
+        {{ form.csrf_token }}
+        <div>
+                {{ form.id_ticket.label }}
+                {{ form.id_ticket() }}
+                {% if form.id_ticket.errors %}
+                {% for error in form.id_ticket.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                {% endif %}
+        </div>
+        <div>
+                {{ form.id_cliente.label }}
+                {{ form.id_cliente() }}
+                {% if form.id_cliente.errors %}
+                   {% for error in form.id_cliente.errors%}
+                   <p>{{ error }}</p>
+                   {% endfor %}
+                {% endif %}
+        </div>
+        <div>
+                {{ form.id_producto.label }}
+                {{ form.id_producto() }}
+                {% if form.id_producto.errors %}
+                 {% for error in form.id_producto.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.fecha_compra.label }}
+                {{ form.fecha_compra() }}
+                {% if form.fecha_compra.errors %}
+                 {% for error in form.fecha_compra.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.cantidad_compra.label }}
+                {{ form.cantidad_compra() }}
+                {% if form.cantidad_compra.errors %}
+                 {% for error in form.cantidad_compra.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.total_compra.label }}
+                {{ form.total_compra() }}
+                {% if form.total_compra.errors %}
+                 {% for error in form.total_compra.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.submit(class="btn") }}
+        </div>
+        
+   </form>
+</div>
+{% endblock %}
+    

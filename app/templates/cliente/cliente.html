@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Clientes
+{% endblock title %}
+
+{% block content %}
+    <h1>Clientes</h1>
+    <a href="{{ url_for('cliente.create_cli') }}" class="btn">Nuevo Cliente</a>
+    <h2>Lista de Clientes</h2>
+    <table id="cliente" >
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Domicilio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for cli in cliente %}
+                    <tr>
+                        <td>{{ cli.id_cliente }}</td>
+                        <td>{{ cli.nombre }}</td>
+                        <td>{{ cli.a_paterno }}</td>
+                        <td>{{ cli.a_materno }}</td>
+                        <td>{{ cli.domicilio }}</td>
+                        <td>
+                            <center>
+                                <button>
+                                    <a href="{{ url_for('cliente.update_cli', id_cliente=cli.id_cliente) }}">
+                                        <i class="fa fa-pencil"></i>
+                                </button>
+                                </a>
+                                <form
+                                    action="{{ url_for('cliente.delete_cli', id_cliente=cli.id_cliente) }}" method="post">
+                                    <button type="submit" onclick="return confirm('Seguro de que quieres Eliminar')">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </center>
+                        </td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

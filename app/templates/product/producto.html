@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Products
+{% endblock title %}
+
+{% block content %}
+    <h1>Productos</h1>
+    <a href="{{ url_for('product.create_pro') }}" class="btn">Nuevo Producto</a>
+    <h2>Lista de Productos</h2>
+    <table id="producto">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Codigo de barras</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pro in producto %}
+                <tr>
+                    <td>{{ pro.id_producto }}</td>
+                    <td>{{ pro.nombre_producto }}</td>
+                    <td>{{ pro.marca_producto }}</td>
+                    <td>{{ pro.cb_producto }}</td>
+                    <td>{{ pro.precio_producto }}</td>
+                    
+                    <td>
+                        <center>
+                                <button> 
+                                    <a href="{{ url_for('product.update_pro', id_producto=pro.id_producto) }}">
+                                        <i class="fa fa-pencil"></i>
+                                </button>  
+                            
+                                
+                                <form action="{{ url_for('product.delete_pro', id_producto=pro.id_producto) }}" method="post">
+                                
+                                <button type="submit" onclick="return confirm('Seguro de que quieres eliminar')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </center>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+    
