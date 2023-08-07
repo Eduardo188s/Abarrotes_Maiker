@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crea Nuevo Cliente
+{% endblock %}
+    
+{% block content %}
+<div class="form-container">
+   <form method="post">
+        {{ form.csrf_token }}
+        <div>
+                {{ form.nombre.label }}
+                {{ form.nombre() }}
+                {% if form.nombre.errors %}
+                {% for error in form.nombre.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                {% endif %}
+        </div>
+        <div>
+                {{ form.a_paterno.label }}
+                {{ form.a_paterno() }}
+                {% if form.a_paterno.errors %}
+                   {% for error in form.a_paterno.errors%}
+                   <p>{{ error }}</p>
+                   {% endfor %}
+                {% endif %}
+        </div>
+        <div>
+                {{ form.a_materno.label }}
+                {{ form.a_materno() }}
+                {% if form.a_materno.errors %}
+                 {% for error in form.a_materno.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.domicilio.label }}
+                {{ form.domicilio() }}
+                {% if form.domicilio.errors %}
+                 {% for error in form.domicilio.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
+                {{ form.submit(class="btn") }}
+        </div>
+        
+   </form>
+</div>
+{% endblock %}
