@@ -2,12 +2,10 @@ from flask import Blueprint, Flask, redirect, render_template, url_for, flash, a
 from flask_session import Session
 from models.menu_roles import Menu_roles
 from models.users import User
-from models.rol import Role
 from decorators import login_required
-
 from forms.users_forms import LoginForm, RegisterForm, ProfileForm, RegisterUserAdmin
-
 from utils.file_handler import save_image
+
 
 user_views=Blueprint('user',__name__)
 

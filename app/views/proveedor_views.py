@@ -15,6 +15,7 @@ def proveedor():
 
 @proveedor_views.route('/proveedor/create/', methods=('GET', 'POST'))
 def create_prov():
+    nav = Menu_roles.get(session.get("role"))
     form=CreateProveedorForm()
     if form.validate_on_submit():
         nombre_proveedor = form.nombre_proveedor.data
@@ -26,7 +27,7 @@ def create_prov():
         prov=Proveedor(nombre_proveedor, a_paterno, a_materno, direccion_proveedor, correo_proveedor, telefono_proveedor)
         prov.save()
         return redirect(url_for('proveedor.proveedor'))
-    return render_template('proveedor/create_prov.html', form=form)
+    return render_template('proveedor/create_prov.html', form=form, nav = nav)
 
 
 @proveedor_views.route('/proveedor/<int:id_proveedor>/update/', methods=('GET', 'POST'))

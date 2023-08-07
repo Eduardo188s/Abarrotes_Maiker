@@ -17,6 +17,7 @@ def compra():
 
 @compra_views.route('/compra/create/', methods=('GET', 'POST'))
 def create_com():
+    nav = Menu_roles.get(session.get("role"))
     form=CreateCompraForm()
     if form.validate_on_submit():
         id_ticket = form.id_ticket.data
@@ -28,7 +29,7 @@ def create_com():
         com=Compra(id_ticket, id_cliente, id_producto, fecha_compra, cantidad_compra, total_compra)
         com.save()
         return redirect(url_for('compra.compra'))
-    return render_template('compra/create_com.html', form=form)
+    return render_template('compra/create_com.html', form=form, nav = nav)
 
 @compra_views.route('/compra/<int:id_compra>/update/', methods=('GET', 'POST'))
 def update_com(id_compra):

@@ -20,6 +20,8 @@ def producto():
 
 @product_views.route('/producto/create/', methods=('GET', 'POST'))
 def create_pro():
+
+    nav = Menu_roles.get(session.get("role"))
     form=CreateProductForm()
     if form.validate_on_submit():
         nombre_producto = form.nombre_producto.data
@@ -31,7 +33,7 @@ def create_pro():
         pro=Product(nombre_producto, marca_producto, cb_producto, precio_producto, image)
         pro.save()
         return redirect(url_for('product.producto'))
-    return render_template('product/create_pro.html', form=form)
+    return render_template('product/create_pro.html', form=form, nav =nav)
 
 @product_views.route('/producto/<int:id_producto>/update/', methods=('GET', 'POST'))
 def update_pro(id_producto):
