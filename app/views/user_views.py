@@ -3,6 +3,7 @@ from flask_session import Session
 from models.menu_roles import Menu_roles
 from models.users import User
 from models.rol import Role
+from decorators import login_required
 
 from forms.users_forms import LoginForm, RegisterForm, ProfileForm, RegisterUserAdmin
 
@@ -36,10 +37,6 @@ def register():
 @user_views.route('/users/login/', methods=('GET', 'POST'))
 def login():
     form = LoginForm()
-
-    
-    
-
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
@@ -50,6 +47,7 @@ def login():
             flash('Verifica tus Datos')
         else:
             session["name"] = username
+            session["id"] = user.id
             session["role"] = user.role
             if "role" in session and session.get("role") :
                 print(session.get("role"))
@@ -69,7 +67,11 @@ def logout():
     return render_template('home/home.html', form=form)
 
 @user_views.route('/users/<int:id>/profile/', methods=('GET', 'POST'))
+@ login_required
 def profile(id):
+
+    nav = Menu_roles.get(session.get("role"))
+
     form = ProfileForm()
     user = User.__get__(id)
     if not user:
@@ -84,5 +86,5 @@ def profile(id):
     form.first_name.data = user.first_name
     form.last_name.data = user.last_name
     image = user.image
-    return render_template('user/profile.html', form=form, image=image)
+    return render_template('user/profile.html', form=form, nav=nav, image=image)
 

@@ -4,6 +4,9 @@
            
             <img src="{{ url_for('static', filename='images/maiker.jpg')}}" alt="Logo de Mi Sitio" class="logo-footer">
             {% if "name" in session and session.get("name")  %}
+            <li>
+                <a href="{{ url_for('user.profile', id=session.get('id')) }}">Perfil</a>
+            </li>
                 {% for link in nav %}
                     <li>
                         <a href="{{ link.ruta }}">{{ link.nombre }}</a>

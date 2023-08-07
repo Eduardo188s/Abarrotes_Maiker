@@ -1,14 +1,19 @@
-from flask import Blueprint, render_template, request, redirect, flash, url_for
+from flask import Blueprint, render_template, request, redirect, flash, url_for, session
 from models.compra import Compra
 from forms.compra_forms import CreateCompraForm, UpdateCompraForm
+from decorators import login_required
+from models.menu_roles import Menu_roles
 
 compra_views=Blueprint('compra',__name__)
 
 @compra_views.route('/compra/')
+@ login_required
 def compra():
+
+    nav = Menu_roles.get(session.get("role"))
     #Consultas categorias de DB
     compras = Compra.get_all()
-    return render_template('compra/compra.html', compra=compras)
+    return render_template('compra/compra.html', nav = nav, compra=compras)
 
 @compra_views.route('/compra/create/', methods=('GET', 'POST'))
 def create_com():

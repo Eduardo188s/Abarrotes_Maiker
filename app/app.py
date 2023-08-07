@@ -11,19 +11,14 @@ from views.compra_views import compra_views
 from views.user_views import user_views
 from views.error_views import error_views
 
-
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'my secret key'
-
 
 # app.config["SESSION_PERMANET"] = False
 # app.config["SESSION TYPO"] = "filesystem"
 
 # Session(app)
-
-
-
 
 app.register_blueprint(home_views)
 app.register_blueprint(product_views)
