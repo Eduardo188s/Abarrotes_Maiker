@@ -1,7 +1,6 @@
 from flask import Blueprint, Flask, redirect, render_template, url_for, flash, abort, request, session
-
 from flask_session import Session
-
+from models.menu_roles import Menu_roles
 from models.users import User
 from models.rol import Role
 
@@ -38,20 +37,27 @@ def register():
 def login():
     form = LoginForm()
 
+    
+    
+
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         user = User.get_by_password(username, password)
-        session["name"] = username
-        role = Role.get(user.role)
-        session["role"] = role.nombre
-        print(role.nombre )
+       
         
-
         if not user:
             flash('Verifica tus Datos')
         else:
-            return render_template('home/home.html', user=user)
+            session["name"] = username
+            session["role"] = user.role
+            if "role" in session and session.get("role") :
+                print(session.get("role"))
+                nav = Menu_roles.get(session.get("role"))
+                print(len(nav))
+                return render_template('home/home.html',nav =nav, user=user)
+            else:
+                return render_template('home/home.html', user=user)
     return render_template('user/login.html', form=form)
 
 @user_views.route('/users/logout/', methods=('GET', 'POST'))

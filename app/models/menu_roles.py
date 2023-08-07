@@ -1,5 +1,4 @@
 from .db import get_connection
-from werkzeug.security import generate_password_hash, check_password_hash
 
 mydb = get_connection()
 
@@ -40,12 +39,10 @@ class Menu_roles:
     def get(id_rol):
         menu_roles = []
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT m.id, m.ruta, m.nombre FROM `menu_roles` mr inner join menus m on mr.id_menu = m.id WHERE id_rol in ({id_rol},3)"
+            sql = f"SELECT m.id, m.ruta, m.nombre, mr.orden FROM `menu_roles` mr inner join menus m on mr.id_menu = m.id WHERE id_rol = {id_rol} ORDER BY orden ASC;"
             cursor.execute(sql)
             result = cursor.fetchall()
             for item in result:
-                print(item)
-
                 menu_roles.append(Menu_roles(item["id"], item["ruta"], item["nombre"]))           
             return menu_roles
         

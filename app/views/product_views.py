@@ -1,26 +1,22 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for, Flask, session
 from models.products import Product
-from flask_session import Session
+from decorators import login_required
 from forms.product_forms import CreateProductForm, UpdateProductForm
 from utils.file_handler import save_image
+from models.menu_roles import Menu_roles
+
 
 product_views=Blueprint('product',__name__)
 
-app = Flask(__name__)
-
-app.config["SESSION_PERMANET"] = False
-app.config["SESSION TYPO"] = "filesystem"
-Session(app)
-
-
 @product_views.route('/producto/')
+@ login_required
 def producto():
 
-    if not session.get("name"):
-        return redirect("/Login")
+    nav = Menu_roles.get(session.get("role"))
+
     #Consultas categorias de DB
     productos = Product.get_all()
-    return render_template('product/producto.html', producto=productos)
+    return render_template('product/producto.html', nav = nav, producto=productos)
 
 @product_views.route('/producto/create/', methods=('GET', 'POST'))
 def create_pro():

@@ -1,0 +1,23 @@
+<header>
+    <nav>
+        <ul>
+           
+            <img src="{{ url_for('static', filename='images/maiker.jpg')}}" alt="Logo de Mi Sitio" class="logo-footer">
+            {% if "name" in session and session.get("name")  %}
+                {% for link in nav %}
+                    <li>
+                        <a href="{{ link.ruta }}">{{ link.nombre }}</a>
+                    </li>
+                    
+                {% endfor %}
+            {% else %}
+                <li><a href="{{ url_for('home.home') }}">Inicio</a></li>
+                <li><a href="{{ url_for('home.contact') }}">Acerca de</a></li>
+                <li><a href="{{ url_for('user.register') }}">Registro</a></li>
+                <li><a href="{{ url_for('user.login') }}">Iniciar Sesión</a></li>
+            {% endif %}
+
+        </ul>
+        
+    </nav>
+</header>

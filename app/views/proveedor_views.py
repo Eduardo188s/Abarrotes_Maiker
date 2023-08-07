@@ -1,14 +1,17 @@
-from flask import Blueprint, render_template, request, redirect, flash, url_for
+from flask import Blueprint, render_template, request, redirect, flash, url_for, session
 from models.proveedor import Proveedor
 from forms.proveedor_forms import CreateProveedorForm, UpdateProveedorForm
-
+from decorators import login_required
+from models.menu_roles import Menu_roles
 proveedor_views = Blueprint('proveedor',__name__)
 
 @proveedor_views.route('/proveedor/')
+@ login_required
 def proveedor():
+    nav = Menu_roles.get(session.get("role"))
     #Consultas categorias de DB
     proveedores = Proveedor.get_all()
-    return render_template('proveedor/proveedor.html', proveedor=proveedores)
+    return render_template('proveedor/proveedor.html', nav = nav, proveedor=proveedores)
 
 @proveedor_views.route('/proveedor/create/', methods=('GET', 'POST'))
 def create_prov():

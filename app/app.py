@@ -1,6 +1,7 @@
-from flask import Flask, request, session, redirect
-from models.menu_roles  import Menu_roles
-from models.menus import Menus
+from flask import Flask, request, session, redirect,url_for
+
+from flask_session import Session
+
 # Import from Views
 from views.home_views import home_views
 from views.product_views import product_views
@@ -12,35 +13,14 @@ from views.error_views import error_views
 
 
 app = Flask(__name__)
+
 app.config['SECRET_KEY'] = 'my secret key'
 
-@user_views.before_request
-def middleware():
-    print("Sesion")
-    print(session)
-    ruta = request.path
-    menu_rol =[]
-    menus = []
 
-    menus = Menus.get_all()
+# app.config["SESSION_PERMANET"] = False
+# app.config["SESSION TYPO"] = "filesystem"
 
-    if not "user" in session:
-        menu_rol =  Menu_roles.get(3)
-    else:
-        menu_rol =  Menu_roles.get(session.get("role"))
-
-    if len(filter(lambda x: x.ruta == ruta, menus)) == 0:
-        redirect("/")
-
-    for m in menu_rol:
-       
-
-        else :   
-            if m.ruta != ruta:
-                redirect("/")
-
-
-
+# Session(app)
 
 
 
@@ -55,3 +35,4 @@ app.register_blueprint(error_views)
 
 if __name__ == '__main__':
     app.run(debug=True)
+

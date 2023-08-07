@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from models.cliente import Cliente
 from forms.cliente_forms import CreateClienteForm, UpdateClienteForm
+from decorators import login_required
 
 cliente_views=Blueprint('cliente',__name__)
 
 @cliente_views.route('/cliente/')
+@ login_required
 def cliente():
     #Consultas categorias de DB
     clientes = Cliente.get_all()

@@ -8,7 +8,8 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav>
+    {% include 'navigation.html' %}
+    <!-- <nav>
         <ul>
             <img src="{{ url_for('static', filename='images/maiker.jpg')}}" alt="Logo de Mi Sitio" class="logo-footer">
             {% if user %}
@@ -28,12 +29,11 @@
             <li><a href="{{ url_for('home.contact') }}">Acerca de</a></li>
             <li><a href="{{ url_for('user.register') }}">Registro</a></li>
             <li><a href="{{ url_for('user.login') }}">Iniciar Sesión</a></li>
-            <li><a href="{{ url_for('user.logout') }}">Cerrar Sesion</a></li>
             {% endif %}
 
             
         </ul>
-    </nav>
+    </nav> -->
     <div class="container">
         {% block content %}
         {% endblock %}
