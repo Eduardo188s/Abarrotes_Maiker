@@ -17,7 +17,9 @@ Session(app)
 
 
 @user_views.route('/users/register/', methods=('GET', 'POST'))
-def register():
+@ login_required
+def register(): 
+    nav = Menu_roles.get(session.get("role"))
     form = RegisterUserAdmin()
 
     if form.validate_on_submit():
@@ -30,7 +32,7 @@ def register():
         user.save()
 
         return redirect(url_for('user.login'))
-    return render_template('user/register.html', form=form)
+    return render_template('user/register.html', form=form, nav = nav)
 
 @user_views.route('/users/login/', methods=('GET', 'POST'))
 def login():

@@ -15,6 +15,10 @@ footer {
     padding: 10px 0;
     color: white;
     text-align: right; /* Alinea el contenido del footer a la izquierda */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0%;
 }
     .logo-footer {
         width: 60px; /* Tamaño pequeño */
@@ -85,6 +89,7 @@ nav li a:hover {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    margin-bottom: 50px;
 }
 /* Tablas */
 table {
@@ -92,6 +97,7 @@ table {
     border-collapse: collapse;
     width: 100%;
     border: 1px solid #6e6a6a;
+    margin-bottom: 50px;
 }
 
 table td, table th {
