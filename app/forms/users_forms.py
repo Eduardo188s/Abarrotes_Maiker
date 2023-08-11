@@ -13,6 +13,7 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(),
                                                     EqualTo('password_confirm', 
                                                             message='Las contraseñas deben coincidir')])
+    role = SelectField('Selecciona Rol', choices=[],  coerce=int, validate_choice=False)
     password_confirm = PasswordField('Password Confirm', validators=[DataRequired()])
     submit = SubmitField('Registrar')
 

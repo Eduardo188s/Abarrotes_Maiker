@@ -22,11 +22,13 @@ def register():
     nav = Menu_roles.get(session.get("role"))
     form = RegisterUserAdmin()
 
+    form.role.choices = [('1', 'Administrador'), ('2', 'Cajero')]
+
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         email = form.email.data
-        role=request.form["role"]
+        role = form.role.data
 
         user = User(username, password, email, role=role)
         user.save()

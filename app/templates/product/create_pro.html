@@ -46,6 +46,15 @@ Crea Nuevo Producto
                  {% endif %}
         </div>
         <div>
+                {{ form.existencia.label }}
+                {{ form.existencia() }}
+                {% if form.existencia.errors %}
+                 {% for error in form.existencia.errors%}
+                 <p>{{ error }}</p>
+                 {% endfor %}
+                 {% endif %}
+        </div>
+        <div>
                 {{ form.submit(class="btn") }}
         </div>
         

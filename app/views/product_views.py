@@ -28,15 +28,16 @@ def create_pro():
         marca_producto = form.marca_producto.data
         cb_producto = form.cb_producto.data
         precio_producto = form.precio_producto.data
-        f = form.image.data
-        image = save_image(f, 'images/products')
-        pro=Product(nombre_producto, marca_producto, cb_producto, precio_producto, image)
+        existencia = form.existencia.data
+        pro=Product(nombre_producto, marca_producto, cb_producto, precio_producto, existencia)
         pro.save()
         return redirect(url_for('product.producto'))
     return render_template('product/create_pro.html', form=form, nav =nav)
 
 @product_views.route('/producto/<int:id_producto>/update/', methods=('GET', 'POST'))
+@ login_required
 def update_pro(id_producto):
+    nav = Menu_roles.get(session.get("role"))
     form=UpdateProductForm()
     pro=Product.get(id_producto)
     if form.validate_on_submit():
@@ -44,14 +45,15 @@ def update_pro(id_producto):
         pro.marca_producto = form.marca_producto.data
         pro.cb_producto = form.cb_producto.data
         pro.precio_producto = form.precio_producto.data
+        pro.existencia = form.existencia.data
         pro.save()
         return redirect(url_for('product.producto'))
     form.nombre_producto.data = pro.nombre_producto
     form.marca_producto.data = pro.marca_producto
     form.cb_producto.data = pro.cb_producto
     form.precio_producto.data = pro.precio_producto
-    form.image.data = pro.image
-    return render_template('product/create_pro.html', form=form)
+    form.existencia.data = pro.existencia
+    return render_template('product/create_pro.html', form=form, nav=nav)
 
 @product_views.route('/producto/<int:id_producto>/delete/', methods=('POST',))
 def delete_pro(id_producto):

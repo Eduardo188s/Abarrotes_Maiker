@@ -27,15 +27,7 @@ Crea Nueva Venta
                    {% endfor %}
                 {% endif %}
         </div>
-        <div>
-                {{ form.id_producto.label }}
-                {{ form.id_producto() }}
-                {% if form.id_producto.errors %}
-                 {% for error in form.id_producto.errors%}
-                 <p>{{ error }}</p>
-                 {% endfor %}
-                 {% endif %}
-        </div>
+       
         <div>
                 {{ form.fecha_compra.label }}
                 {{ form.fecha_compra() }}
@@ -54,15 +46,7 @@ Crea Nueva Venta
                  {% endfor %}
                  {% endif %}
         </div>
-        <div>
-                {{ form.total_compra.label }}
-                {{ form.total_compra() }}
-                {% if form.total_compra.errors %}
-                 {% for error in form.total_compra.errors%}
-                 <p>{{ error }}</p>
-                 {% endfor %}
-                 {% endif %}
-        </div>
+      
         <div>
                 {{ form.submit(class="btn") }}
         </div>

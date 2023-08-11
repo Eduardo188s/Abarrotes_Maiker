@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms import StringField, TextAreaField, SubmitField, IntegerField
+from wtforms.validators import DataRequired, Length, NumberRange
 
 class CreateProveedorForm(FlaskForm):
     nombre_proveedor=StringField('Nombre',
@@ -19,9 +19,9 @@ class CreateProveedorForm(FlaskForm):
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
     
-    telefono_proveedor=StringField('Telefono',
+    telefono_proveedor=IntegerField('Telefono',
                          validators=[DataRequired(),
-                                     Length(min=3,max=30)])
+                                               NumberRange(min=0)])
     
     submit=SubmitField('Guardar')
 
@@ -43,8 +43,8 @@ class UpdateProveedorForm(FlaskForm):
                          validators=[DataRequired(),
                                      Length(min=3,max=30)])
     
-    telefono_proveedor=StringField('Telefono',
+    telefono_proveedor=IntegerField('Telefono',
                          validators=[DataRequired(),
-                                     Length(min=3,max=30)])
+                                               NumberRange(min=0)])
     
     submit=SubmitField('Actualizar')
