@@ -1,4 +1,16 @@
 <header>
+    <button id="atras">Atrás</button>
+            <button id="adelante">Adelante</button>
+            
+            <script>
+                document.getElementById("atras").addEventListener("click", function() {
+                    history.back();
+                });
+            
+                document.getElementById("adelante").addEventListener("click", function() {
+                    history.forward();
+                });
+            </script>
     <nav>
         <ul>
            

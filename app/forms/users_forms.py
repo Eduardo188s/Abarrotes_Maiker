@@ -8,13 +8,14 @@ from models.users import User
 
 ################# Formulario de Registro ##################
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = EmailField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(),
+    username = StringField('Usuario', validators=[DataRequired()],render_kw={"placeholder": "Ingresa un Usuario"})
+    email = EmailField('Email', validators=[DataRequired(), Email()],render_kw={"placeholder": "Ingresa en correo electronico"})
+    password = PasswordField('Contraseña', validators=[DataRequired(),
                                                     EqualTo('password_confirm', 
-                                                            message='Las contraseñas deben coincidir')])
+                                                            message='Las contraseñas deben coincidir')],
+                                        render_kw={"placeholder": "Ingresa la contraseña"})
     role = SelectField('Selecciona Rol', choices=[],  coerce=int, validate_choice=False)
-    password_confirm = PasswordField('Password Confirm', validators=[DataRequired()])
+    password_confirm = PasswordField('Confirmar contraseña', validators=[DataRequired()],render_kw={"placeholder": "Confirma la contraseña"})
     submit = SubmitField('Registrar')
 
     ######## Validar Correo Unico #########
@@ -34,8 +35,8 @@ class RegisterUserAdmin(RegisterForm):
 
 ################# Formulario de Login ##################
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Usuario', validators=[DataRequired()],render_kw={"placeholder": "Ingresa tu Usuario"})
+    password = PasswordField('Contraseña', validators=[DataRequired()],render_kw={"placeholder": "Ingresa tu Contraseña"})
     submit = SubmitField('Ingresar')
 
 ################ Formulario de Perfil ################

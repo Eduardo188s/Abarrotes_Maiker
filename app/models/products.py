@@ -12,6 +12,10 @@ class Product:
         self.precio_producto = precio_producto
         self.existencia = existencia
 
+    def __init__(self, nombre_producto, id_producto=None):
+        self.id_producto = id_producto
+        self.nombre_producto = nombre_producto
+        
     def save(self):
         # Create a New Object in DB
         if self.id_producto is None:
@@ -26,7 +30,7 @@ class Product:
         else:
             with mydb.cursor() as cursor:
                 sql = "UPDATE producto SET nombre_producto = %s, marca_producto = %s, cb_producto = %s, precio_producto = %s, existencia = %s WHERE id_producto = %s"
-                val = (self.nombre_producto, self.marca_producto, self.cb_producto, self.precio_producto, self.id_producto, self.existencia)
+                val = (self.nombre_producto, self.marca_producto, self.cb_producto, self.precio_producto, self.existencia, self.id_producto)
                 cursor.execute(sql, val)
                 mydb.commit()
                 return self.id_producto
@@ -34,6 +38,7 @@ class Product:
     def delete(self):
         with mydb.cursor() as cursor:
             sql = f"DELETE FROM producto WHERE id_producto = { self.id_producto }"
+            print(sql)
             cursor.execute(sql)
             mydb.commit()
             return self.id_producto
@@ -57,6 +62,17 @@ class Product:
             result = cursor.fetchall()
             for item in result:
                 producto.append(Product(item["nombre_producto"], item["marca_producto"], item["cb_producto"], item["precio_producto"], item["existencia"], item["id_producto"]))
+            return producto
+        
+    @staticmethod
+    def get_all_disponibles():
+        producto = []
+        with mydb.cursor(dictionary=True) as cursor:
+            sql = f"SELECT id_producto, nombre_producto FROM producto WHERE existencia >0"
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            for item in result:
+                producto.append(Product(item["nombre_producto"], item["id_producto"]))
             return producto
     
     @staticmethod

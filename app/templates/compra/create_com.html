@@ -3,55 +3,98 @@
 {% block title %}
 Crea Nueva Venta
 {% endblock %}
-    
+
 {% block content %}
-<h1><center>Nueva Venta</center></h1>
-<div class="form-container">
-   <form method="post">
-        {{ form.csrf_token }}
-        <div>
-                {{ form.id_ticket.label }}
-                {{ form.id_ticket() }}
-                {% if form.id_ticket.errors %}
-                {% for error in form.id_ticket.errors%}
-                 <p>{{ error }}</p>
-                 {% endfor %}
-                {% endif %}
-        </div>
-        <div>
-                {{ form.id_cliente.label }}
-                {{ form.id_cliente() }}
-                {% if form.id_cliente.errors %}
-                   {% for error in form.id_cliente.errors%}
-                   <p>{{ error }}</p>
-                   {% endfor %}
-                {% endif %}
-        </div>
-       
-        <div>
-                {{ form.fecha_compra.label }}
-                {{ form.fecha_compra() }}
-                {% if form.fecha_compra.errors %}
-                 {% for error in form.fecha_compra.errors%}
-                 <p>{{ error }}</p>
-                 {% endfor %}
-                 {% endif %}
-        </div>
-        <div>
-                {{ form.cantidad_compra.label }}
-                {{ form.cantidad_compra() }}
-                {% if form.cantidad_compra.errors %}
-                 {% for error in form.cantidad_compra.errors%}
-                 <p>{{ error }}</p>
-                 {% endfor %}
-                 {% endif %}
-        </div>
+<div id="app">
+  <h1>
+        <center>Nueva Venta</center>
+  </h1>
+  <div class="form-container">
+    <form method="post">
+            {{ form.csrf_token }}
+            <div>
+                    {{ form.fecha_compra.label }}
+                    {{ form.fecha_compra() }}
+                    {% if form.fecha_compra.errors %}
+                    {% for error in form.fecha_compra.errors%}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                    {% endif %}
+            </div>
+            <div>
+                    {{ form.producto.label }}
+                    {{ form.producto() }}
+            </div>
+            <div>
+                    {{ form.cantidad_compra.label }}
+                    {{ form.cantidad_compra() }}
+                    {% if form.cantidad_compra.errors %}
+                    {% for error in form.cantidad_compra.errors%}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                    {% endif %}
+            </div>
+            <div class="offset-md-2 col-8">
+                    {{ form.submit(class="btn") }}
+            </div>
+    </form>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 py-4">
+        <table id="carritoCompras">
+        <thead>
+        <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+        <th>Total</th>
+        <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in carritoCompras %}
+        <tr>
+        <td>{{ car.nombre_producto }}</td>
+        <td>{{ car.cantidad }}</td>
+        <td>{{ car.sub_total }}</td>
+        <td>{{ car.total }}</td>
+
+        <td>
+        <center>
+                <button>
+                        <a
+                                href="{{ url_for('proveedor.update_prov', id_proveedor=car.id_compra) }}">
+                                <i class="fa fa-pencil"></i>
+                        </a>
+                </button>
+
+                <form action="{{ url_for('proveedor.delete_prov', id_proveedor=car.id_compra) }}"
+                        method="post">
+                        <button type="submit"
+                                onclick="return confirm('Seguro')">
+                                <i class="fa fa-trash"></i>
+                        </button>
+                </form>
+        </center>
+        </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="offset-md-10 col-6">
+
+      <form method="get" action="{{ url_for('compra.get_ticket', id_compra=id_compra) }}">
+        <button type="submit"  class="btn btn-succes" >Finalizar Compra</button>
+      </form>     
       
-        <div>
-                {{ form.submit(class="btn") }}
-        </div>
+    </div>
+
+  </div>
         
-   </form>
 </div>
+
 {% endblock %}
-    

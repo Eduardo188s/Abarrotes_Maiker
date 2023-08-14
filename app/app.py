@@ -10,6 +10,7 @@ from views.cliente_views import cliente_views
 from views.compra_views import compra_views
 from views.user_views import user_views
 from views.error_views import error_views
+from views.ticket_views import ticket_views
 
 app = Flask(__name__)
 
@@ -27,6 +28,8 @@ app.register_blueprint(cliente_views)
 app.register_blueprint(compra_views)
 app.register_blueprint(user_views)
 app.register_blueprint(error_views)
+
+#app.register_blueprint(ticket_views)
 
 if __name__ == '__main__':
     app.run(debug=True)

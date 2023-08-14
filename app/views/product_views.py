@@ -20,7 +20,7 @@ def producto():
 
 @product_views.route('/producto/create/', methods=('GET', 'POST'))
 def create_pro():
-
+    
     nav = Menu_roles.get(session.get("role"))
     form=CreateProductForm()
     if form.validate_on_submit():

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crea Nueva Venta
+{% endblock %}
+
+{% block content %}
+<div id="app">
+  <h1>
+          <center>No ticket:</center>
+  </h1>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 py-4">
+              <table id="tablaTicket">
+                      <thead>
+                              <tr>
+                                      <th>Cantidad</th>
+                                      <th>Producto</th>
+                                      <th>Subtotal</th>
+                                      <th>Total</th>
+                              </tr>
+                      </thead>
+                      <tbody>
+                              {% for car in listaTicket %}
+                              <tr>
+                                      <td>{{ car.cantidad }}</td>
+                                      <td>{{ car.producto }}</td>
+                                      <td>{{ car.sub_total }}</td>
+                                      <td>{{ car.total }}</td>
+                                      
+                              </tr>
+                              {% endfor %}
+                      </tbody>
+              </table>
+      </div>
+
+    </div>
+    <div class="offset-md-10 col-6">
+
+      <form method="link" action="{{ url_for('proveedor.update_prov', id_proveedor=car.id_compra) }}">
+        <button type="button"  class="btn btn-succes" >Finalizar Compra</button>
+      </form>
+      
+      
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        
+</div>
+
+{% endblock %}

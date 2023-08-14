@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crea Nueva Venta
+{% endblock %}
+
+{% block content %}
+<div id="app">
+  <h1>
+    <center>No ticket:</center>
+  </h1>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="offset-3 col-6 py-4">
+        <table id="tablaTicket" class="table  table-ticket table-borderless">
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+              <th>Producto</th>
+              <th>Subtotal</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for car in listaTicket %}
+            <tr>
+              <td>{{ car.cantidad_compra }}</td>
+              <td>{{ car.nombre_producto }}</td>
+              <td>{{ car.sub_total }}</td>
+              <td>{{ car.total }}</td>
+                    
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"></td>
+              <td >Subtotal</td>
+              <td>{{sub_total}}</td>
+              
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td >Total</td>
+              <td>{{total}}</td>
+            </tr>
+               
+          </tfoot>
+        </table>
+      </div>
+
+    </div>   
+
+  </div>
+        
+</div>
+
+{% endblock %}

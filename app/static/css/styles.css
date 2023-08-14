@@ -16,6 +16,7 @@ img {
   height: auto;
 }
 
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #fbfbfb;
@@ -80,22 +81,22 @@ nav li a:hover {
 }
 
 .btn {
-    display: inline-block;
-    width: 200px;
-    padding: 10px;
-    border: none;
-    background-color: #9a2626;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 700;
-    text-align: center;
-    color: #fff;
-    transition: background-color 0.3s, color 0.3s; 
+    display: inline-block !important;
+    /* width: 200px !important; */
+    padding: 10px !important;
+    border: none !important;
+    background-color: #9a2626 !important;
+    border-radius: 5px !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    color: #fff !important;
+    transition: background-color 0.3s, color 0.3s !important; 
 }
 
 .btn:hover {
-    background-color:gray;
-    color: white;
+    background-color:gray !important;
+    color: rgb(0, 0, 0) !important;
 }
 
 .container {
@@ -219,4 +220,14 @@ table form button {
 table a {
     text-decoration: none;
     color: #9a2626;
+}
+
+.table-ticket {
+    border: none !important;
+}
+
+.table-ticket td, .table-ticket th {
+    border: none !important;
+    font-size: 0.7em;
+    text-align: center !important;
 }
