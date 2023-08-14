@@ -5,7 +5,7 @@ from decorators import login_required
 from models.menu_roles import Menu_roles
 from models.carrito import Carrito
 from models.detalle import Detalle
-
+import datetime
 
 compra_views=Blueprint('compra',__name__)
 @compra_views.route('/compra/')
@@ -21,11 +21,17 @@ def compra():
 @compra_views.route('/compra/create/', methods=('GET', 'POST'))
 def create_com():
     nav = Menu_roles.get(session.get("role"))
+    last_compra = Compra.get_all()[0]
+    if last_compra.total_compra is None:
+        id_compra = last_compra.id_compra
+    else:
+        new_compra = Compra(fecha_compra=datetime.datetime.now())
+        id_compra = new_compra.save()
     form=CreateCompraForm()
-    print(request.args.__len__)
+    #print(request.args.__len__)
     carritoCompras = []
     
-    id_compra = None
+    #id_compra = None
 
     if request.args.__len__() > 0:
         id_compra = request.args["id_compra"]
@@ -39,8 +45,7 @@ def create_com():
 
         carrito = Carrito(id_producto, cantidad, id_compra = id_compra)
         carrito.save()
-       
-        return render_template('compra/create_com.html', form=form, nav = nav, carritoCompras = carritoCompras,id_compra= id_compra)
+        print(carritoCompras)
     return render_template('compra/create_com.html', form=form, nav = nav, carritoCompras = carritoCompras,id_compra= id_compra)
 
 

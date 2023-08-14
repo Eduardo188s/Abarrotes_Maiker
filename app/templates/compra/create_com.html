@@ -45,11 +45,11 @@ Crea Nueva Venta
         <table id="carritoCompras">
         <thead>
         <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Subtotal</th>
-        <th>Total</th>
-        <th>Acciones</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Total</th>
+                <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -60,7 +60,7 @@ Crea Nueva Venta
         <td>{{ car.sub_total }}</td>
         <td>{{ car.total }}</td>
 
-        <td>
+        <tr>
         <center>
                 <button>
                         <a
@@ -77,7 +77,7 @@ Crea Nueva Venta
                         </button>
                 </form>
         </center>
-        </td>
+        </tr>
         </tr>
         {% endfor %}
         </tbody>

@@ -4,7 +4,7 @@ mydb = get_connection()
 
 class Product:
 
-    def __init__(self, nombre_producto, marca_producto, cb_producto, precio_producto, existencia, id_producto=None):
+    def __init__(self, nombre_producto='', marca_producto='', cb_producto='', precio_producto='', existencia='', id_producto=None):
         self.id_producto = id_producto
         self.nombre_producto = nombre_producto
         self.marca_producto = marca_producto
@@ -12,9 +12,9 @@ class Product:
         self.precio_producto = precio_producto
         self.existencia = existencia
 
-    def __init__(self, nombre_producto, id_producto=None):
-        self.id_producto = id_producto
-        self.nombre_producto = nombre_producto
+    #def __init__(self, nombre_producto, id_producto=None):
+    #    self.id_producto = id_producto
+    #    self.nombre_producto = nombre_producto
         
     def save(self):
         # Create a New Object in DB
@@ -61,18 +61,25 @@ class Product:
             cursor.execute(sql)
             result = cursor.fetchall()
             for item in result:
-                producto.append(Product(item["nombre_producto"], item["marca_producto"], item["cb_producto"], item["precio_producto"], item["existencia"], item["id_producto"]))
+                producto.append(
+                        Product(nombre_producto=item["nombre_producto"], 
+                                marca_producto=item["marca_producto"], 
+                                cb_producto=item["cb_producto"], 
+                                precio_producto=item["precio_producto"], 
+                                existencia=item["existencia"], 
+                                id_producto=item["id_producto"])
+                    )
             return producto
         
     @staticmethod
     def get_all_disponibles():
         producto = []
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT id_producto, nombre_producto FROM producto WHERE existencia >0"
+            sql = f"SELECT id_producto, nombre_producto FROM producto WHERE existencia > 0"
             cursor.execute(sql)
             result = cursor.fetchall()
             for item in result:
-                producto.append(Product(item["nombre_producto"], item["id_producto"]))
+                producto.append(Product(nombre_producto=item["nombre_producto"], id_producto=item["id_producto"]))
             return producto
     
     @staticmethod

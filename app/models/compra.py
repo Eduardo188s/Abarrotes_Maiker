@@ -5,10 +5,11 @@ mydb = get_connection()
 
 class   Compra:
 
-    def __init__(self, fecha_compra, ticket = None, id_compra=None):
+    def __init__(self, fecha_compra, ticket = None, total_compra = '', id_compra=None):
         self.id_compra = id_compra
         self.fecha_compra = fecha_compra
         self.ticket = ticket
+        self.total_compra = total_compra
 
     def save(self):
         # Create a New Object in DB
@@ -53,11 +54,11 @@ class   Compra:
     def get_all():
         compra = []
         with mydb.cursor(dictionary=True) as cursor:
-            sql = f"SELECT fecha_compra,ticket, id_compra FROM compra"
+            sql = f"SELECT fecha_compra,ticket, id_compra, total_compra FROM compra ORDER BY id_compra DESC"
             cursor.execute(sql)
             result = cursor.fetchall()
             for item in result:
-                compra.append(Compra(item["fecha_compra"], item["ticket"], item["id_compra"]))
+                compra.append(Compra(fecha_compra=item["fecha_compra"], ticket=item["ticket"],id_compra= item["id_compra"], total_compra=item['total_compra']))
                 print(item)
             return compra
     

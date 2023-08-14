@@ -20,5 +20,3 @@ def create_com():
 
         return render_template('ticket/ticket.html',  nav = nav, listaTicket = listaTicket)
     return render_template('ticket/ticket.html',  nav = nav, listaTicket = listaTicket)
-
-

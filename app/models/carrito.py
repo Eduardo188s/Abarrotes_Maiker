@@ -19,7 +19,7 @@ class Carrito:
         # Create a New Object in DB
         if self.id is None:
             fecha_compra=datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-            print(self.id_compra)
+            print(self.id_compra) 
             if self.id_compra != None:
                 compra = Compra.get(self.id_compra)
             else:
