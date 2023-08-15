@@ -18,38 +18,31 @@ def compra():
    
     return render_template('compra/compra.html', nav = nav, compra=compras)
 
-@compra_views.route('/compra/create/', methods=('GET', 'POST'))
-def create_com():
-    nav = Menu_roles.get(session.get("role"))
-    last_compra = Compra.get_all()[0]
-    if last_compra.total_compra is None:
-        id_compra = last_compra.id_compra
-    else:
-        new_compra = Compra(fecha_compra=datetime.datetime.now())
-        id_compra = new_compra.save()
-    form=CreateCompraForm()
-    #print(request.args.__len__)
-    carritoCompras = []
-    
-    #id_compra = None
 
-    if request.args.__len__() > 0:
-        id_compra = request.args["id_compra"]
-        if id_compra:
-            carritoCompras = Carrito.get_all(id_compra)
-    
-    if form.validate_on_submit():
+@compra_views.route('/compra/create/<int:id_compra>', methods=('GET',))
+@compra_views.route('/compra/create/', defaults={'id_compra': None}, methods=('GET','POST'))
+def create_com(id_compra):
+    nav = Menu_roles.get(session.get("role"))
+    form=CreateCompraForm()
+    print(request.args.__len__)
+    carritoCompras = []
+    id_compra =id_compra if id_compra is not None else 0
+    carritoCompras = Carrito.get_all(id_compra)
+   
+    if request.method == 'POST' and form.validate_on_submit():
+        if id_compra== 0:
+            new_compra = Compra(fecha_compra=datetime.datetime.now())
+            id_compra = new_compra.save()
             
         id_producto = form.producto.data
         cantidad = form.cantidad_compra.data
-
         carrito = Carrito(id_producto, cantidad, id_compra = id_compra)
         carrito.save()
         print(carritoCompras)
-    return render_template('compra/create_com.html', form=form, nav = nav, carritoCompras = carritoCompras,id_compra= id_compra)
+        return redirect(url_for('compra.create_com',id_compra=id_compra))
+    return render_template(f'compra/create_com.html', form=form, nav = nav, carritoCompras = carritoCompras,id_compra= id_compra)
 
-
-@compra_views.route('/compra/<int:id_compra>/update/', methods=('GET', 'POST'))
+@compra_views.route('/compra/<int:id_producto>/update/', methods=('GET', 'POST'))
 def update_com(id_compra):
     form=UpdateCompraForm()
     com=Compra.get(id_compra)
@@ -64,32 +57,38 @@ def update_com(id_compra):
     form.total_compra.data = com.total_compra
     return render_template('compra/create_com.html', form=form)
 
-@compra_views.route('/compra/<int:id_compra>/delete/', methods=('POST', 'DELETE'))
-def delete_com(id_compra):
-    com=Compra.get(id_compra)
-    com.delete()
-    return redirect(url_for('compra.compra'))
+@compra_views.route('/compra/<int:id_compra>/<int:id_producto>/delete/', methods=('POST',))
+def delete_com(id_compra, id_producto):
+    car=Carrito.get_item(id_compra, id_producto)
+    print(id_compra, id_producto)
+    print(car)
+    car.delete()
+    return redirect(url_for('compra.create_com', id_compra = id_compra))
 
 
-@compra_views.route('/compra/ticket/', methods=("GET", "POST"))
-def get_ticket():
+@compra_views.route('/compra/ticket/<int:id_compra>', methods=("GET", "POST"))
+def get_ticket(id_compra):
     nav = Menu_roles.get(session.get("role"))
     listaTicket = []
+    print("Recibiendo Ticket")
+    # if request.args.__len__() > 0:
+    # id_compra = request.args["id_compra"]
+    print(id_compra)
+    if id_compra:
 
-    if request.args.__len__() > 0:
-        id_compra = request.args["id_compra"]
-        if id_compra:
-            listaTicket = Detalle.getAll(id_compra)
+        status_compra = Compra.get_status(id_compra)
+        if status_compra is None:
+            Compra.save_status(id_compra, "F")
 
-            subtotal = 0
-            total = 0
+            Detalle.saveOfCarrito(id_compra)
+        listaTicket = Detalle.getAll(id_compra)
 
-            for item in listaTicket:
-                subtotal += item.sub_total
-                total += item.total
+        subtotal = 0
+        total = 0
+        
+        for item in listaTicket:
+            subtotal += item.sub_total
+            total += item.total
                 
-              
-            
-
         return render_template('compra/ticket.html',  nav = nav, listaTicket = listaTicket,total = total, sub_total = subtotal)
     return render_template('compra/ticket.html',nav = nav, listaTicket = listaTicket)

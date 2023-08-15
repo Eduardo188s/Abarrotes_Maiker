@@ -81,5 +81,15 @@ class Carrito:
             result = cursor.fetchone()
             return result[0]
         
+    @staticmethod
+    def get_item(id_compra, id_producto):
+        with mydb.cursor(dictionary=True) as cursor:
+            sql = f"SELECT id, id_producto, id_compra, cantidad FROM carrito_productos WHERE id_compra = { id_compra } and id_producto = { id_producto }"
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            print(result)
+            carrito_productos = Carrito(id_producto=result["id_producto"],id_compra=result["id_compra"], cantidad=result["cantidad"], id=result["id"])
+            return carrito_productos
+        
     def __str__(self):
         return f"{ self.id } - { self.id_producto }"

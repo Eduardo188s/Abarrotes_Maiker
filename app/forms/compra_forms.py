@@ -24,6 +24,7 @@ class CreateCompraForm(FlaskForm):
     producto = SelectField('Selecciona Producto', validators=[DataRequired()], 
                                                   render_kw={'class':'form-select'},
                                                   choices=productosLista)
+    print(productosDisponibles)
     submit=SubmitField('Guardar')
 
 class UpdateCompraForm(FlaskForm):

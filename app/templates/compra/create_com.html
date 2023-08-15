@@ -6,95 +6,96 @@ Crea Nueva Venta
 
 {% block content %}
 <div id="app">
-  <h1>
-        <center>Nueva Venta</center>
-  </h1>
-  <div class="form-container">
-    <form method="post">
-            {{ form.csrf_token }}
-            <div>
-                    {{ form.fecha_compra.label }}
-                    {{ form.fecha_compra() }}
-                    {% if form.fecha_compra.errors %}
-                    {% for error in form.fecha_compra.errors%}
-                    <p>{{ error }}</p>
-                    {% endfor %}
-                    {% endif %}
-            </div>
-            <div>
-                    {{ form.producto.label }}
-                    {{ form.producto() }}
-            </div>
-            <div>
-                    {{ form.cantidad_compra.label }}
-                    {{ form.cantidad_compra() }}
-                    {% if form.cantidad_compra.errors %}
-                    {% for error in form.cantidad_compra.errors%}
-                    <p>{{ error }}</p>
-                    {% endfor %}
-                    {% endif %}
-            </div>
-            <div class="offset-md-2 col-8">
-                    {{ form.submit(class="btn") }}
-            </div>
-    </form>
-  </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 py-4">
-        <table id="carritoCompras">
-        <thead>
-        <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-                <th>Total</th>
-                <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for car in carritoCompras %}
-        <tr>
-        <td>{{ car.nombre_producto }}</td>
-        <td>{{ car.cantidad }}</td>
-        <td>{{ car.sub_total }}</td>
-        <td>{{ car.total }}</td>
-
-        <tr>
-        <center>
-                <button>
-                        <a
-                                href="{{ url_for('proveedor.update_prov', id_proveedor=car.id_compra) }}">
-                                <i class="fa fa-pencil"></i>
-                        </a>
-                </button>
-
-                <form action="{{ url_for('proveedor.delete_prov', id_proveedor=car.id_compra) }}"
-                        method="post">
-                        <button type="submit"
-                                onclick="return confirm('Seguro')">
-                                <i class="fa fa-trash"></i>
-                        </button>
+        <h1>
+                <center>Nueva Venta</center>
+        </h1>
+        <div class="form-container">
+                <form method="post">
+                        {{ form.csrf_token }}
+                        <div>
+                                {{ form.fecha_compra.label }}
+                                {{ form.fecha_compra() }}
+                                {% if form.fecha_compra.errors %}
+                                {% for error in form.fecha_compra.errors%}
+                                <p>{{ error }}</p>
+                                {% endfor %}
+                                {% endif %}
+                        </div>
+                        <div>
+                                {{ form.producto.label }}
+                                {{ form.producto() }}
+                        </div>
+                        <div>
+                                {{ form.cantidad_compra.label }}
+                                {{ form.cantidad_compra() }}
+                                {% if form.cantidad_compra.errors %}
+                                {% for error in form.cantidad_compra.errors%}
+                                <p>{{ error }}</p>
+                                {% endfor %}
+                                {% endif %}
+                        </div>
+                        <div class="offset-md-2 col-8">
+                                {{ form.submit(class="btn") }}
+                        </div>
                 </form>
-        </center>
-        </tr>
-        </tr>
-        {% endfor %}
-        </tbody>
-        </table>
-      </div>
+        </div>
+        <div class="container-fluid">
+                <div class="row">
+                        <div class="col-12 py-4">
+                                <table id="carritoCompras">
+                                        <thead>
+                                                <tr>
+                                                        <th>Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Subtotal</th>
+                                                        <th>Total</th>
+                                                        <th>Acciones</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                                {% for car in carritoCompras %}
+                                                <tr>
+                                                        <td>{{ car.nombre_producto }}</td>
+                                                        <td>{{ car.cantidad }}</td>
+                                                        <td>{{ car.sub_total }}</td>
+                                                        <td>{{ car.total }}</td>
 
-    </div>
-    <div class="offset-md-10 col-6">
+                                                        <td>
+                                                                <center>
+                                                                        <button>
+                                                                                <a
+                                                                                        href="{{ url_for('compra.update_com', id_producto=car.id_producto) }}">
+                                                                                        <i class="fa fa-pencil"></i>
+                                                                                </a>
+                                                                        </button>
 
-      <form method="get" action="{{ url_for('compra.get_ticket', id_compra=id_compra) }}">
-        <button type="submit"  class="btn btn-succes" >Finalizar Compra</button>
-      </form>     
-      
-    </div>
+                                                                        <form action="{{ url_for('compra.delete_com', id_compra=car.id_compra, id_producto=car.id_producto) }}"
+                                                                                method="post">
+                                                                                <button type="submit"
+                                                                                        onclick="return confirm('Seguro')">
+                                                                                        <i class="fa fa-trash"></i>
+                                                                                </button>
+                                                                        </form>
+                                                                </center>
+                                                        </td>
+                                                </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                </table>
+                        </div>
 
-  </div>
-        
+                </div>
+                <div class="offset-md-10 col-6">
+                        {{id_compra}}
+
+                        <form method="get" action="{{ url_for('compra.get_ticket', id_compra=id_compra) }}">
+                                <button type="submit" class="btn btn-succes">Finalizar Compra</button>
+                        </form>
+
+                </div>
+
+        </div>
+
 </div>
 
 {% endblock %}

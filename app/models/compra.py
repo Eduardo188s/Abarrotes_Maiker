@@ -18,6 +18,8 @@ class   Compra:
             with mydb.cursor() as cursor:
                 sql = "INSERT INTO compra(fecha_compra, ticket) VALUES(%s, %s)"
                 val = (self.fecha_compra, str( ticket))
+                print("producto")
+                print(str(ticket))
                 cursor.execute(sql, val)
                 mydb.commit()
                 self.id_compra = cursor.lastrowid
@@ -69,6 +71,24 @@ class   Compra:
             cursor.execute(sql)
             result = cursor.fetchone()
             return result[0]
+    
+    @staticmethod
+    def get_status(id_compra):
+        # Create a New Object in DB
+        with mydb.cursor() as cursor:
+            sql = f"SELECT status FROM compra WHERE id_compra = {id_compra};"
+            cursor.execute(sql)
+            result =cursor.fetchone()
+            return result[0]
+        
+    @staticmethod
+    def save_status(id_compra, status):
+            with mydb.cursor() as cursor:
+                sql = "UPDATE compra SET status =%s WHERE id_compra = %s"
+                val = (status, id_compra)
+                cursor.execute(sql, val)
+                mydb.commit()
+                return id_compra
         
     def __str__(self):
         return f"{ self.id_compra } - { self.ticket }"
