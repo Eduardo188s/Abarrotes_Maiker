@@ -195,6 +195,7 @@ form input[type="text"] {
 .form-container input {
     width: 100%;
     margin-bottom: 10px;
+    
 }
 
 .fa {
@@ -230,4 +231,24 @@ table a {
     border: none !important;
     font-size: 0.7em;
     text-align: center !important;
+}
+.atras {
+    border-radius: 20%;
+    background-color: #333;
+    color: white;
+    transition: color 0.3s ease;
+}
+.adelante {
+    border-radius: 20%;
+    background-color: #333;
+    color: white;
+    transition: color 0.3s ease;
+}
+.atras:hover {
+    background-color:gray !important;
+    color: rgb(0, 0, 0) !important;
+}
+.adelante:hover {
+    background-color:gray !important;
+    color: rgb(0, 0, 0) !important;
 }

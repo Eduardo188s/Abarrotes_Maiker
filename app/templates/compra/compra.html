@@ -7,17 +7,15 @@ Ventas
 {% block content %}
     <h1>Ventas</h1>
     <a href="{{ url_for('compra.create_com') }}" class="btn">Nueva Venta</a>
-    <h2>Lista de Productos</h2>
+    <h2>Lista de Ventas</h2>
    
     <table id="compra">
         <thead>
-           
             <tr>
                 <th>ID</th>
                 <th>ticket</th>
                 <th>Fecha</th>
-                <th>Cantidad</th>
-                <th>Total</th>
+                <!-- <th>Total</th> -->
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -27,12 +25,15 @@ Ventas
                     <td>{{ com.id_compra }}</td>
                     <td>{{ com.ticket }}</td>
                     <td>{{ com.fecha_compra }}</td>
-                    <td>{{ com.cantidad_compra }}</td>
-                    <td>{{ com.total_compra }}</td>
+                    <!-- <td>{{ com.total }}</td> -->
                     <td>
-                        <a href="{{ url_for('compra.create_com', id_compra=com.id_compra) }}">
-                            <i class="fa fa-pencil"></i>
-                        </a>
+                        <Center>
+                            <button>
+                                <a href="{{ url_for('compra.create_com', id_compra=com.id_compra) }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            </button>
+                        </Center>
                     </td>
                 </tr>   
             {% endfor %}

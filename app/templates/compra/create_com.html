@@ -12,7 +12,7 @@ Crea Nueva Venta
         <div class="form-container">
                 <form method="post">
                         {{ form.csrf_token }}
-                        <div>
+                        <!-- <div>
                                 {{ form.fecha_compra.label }}
                                 {{ form.fecha_compra() }}
                                 {% if form.fecha_compra.errors %}
@@ -20,7 +20,7 @@ Crea Nueva Venta
                                 <p>{{ error }}</p>
                                 {% endfor %}
                                 {% endif %}
-                        </div>
+                        </div> -->
                         <div>
                                 {{ form.producto.label }}
                                 {{ form.producto() }}
@@ -59,16 +59,14 @@ Crea Nueva Venta
                                                         <td>{{ car.cantidad }}</td>
                                                         <td>{{ car.sub_total }}</td>
                                                         <td>{{ car.total }}</td>
-
                                                         <td>
                                                                 <center>
-                                                                        <button>
+                                                                        <!-- <button>
                                                                                 <a
                                                                                         href="{{ url_for('compra.update_com', id_producto=car.id_producto) }}">
                                                                                         <i class="fa fa-pencil"></i>
                                                                                 </a>
-                                                                        </button>
-
+                                                                        </button> -->
                                                                         <form action="{{ url_for('compra.delete_com', id_compra=car.id_compra, id_producto=car.id_producto) }}"
                                                                                 method="post">
                                                                                 <button type="submit"
@@ -83,19 +81,13 @@ Crea Nueva Venta
                                         </tbody>
                                 </table>
                         </div>
-
                 </div>
                 <div class="offset-md-10 col-6">
-                        {{id_compra}}
-
                         <form method="get" action="{{ url_for('compra.get_ticket', id_compra=id_compra) }}">
                                 <button type="submit" class="btn btn-succes">Finalizar Compra</button>
                         </form>
-
                 </div>
-
         </div>
-
 </div>
 
 {% endblock %}

@@ -19,8 +19,9 @@ def compra():
     return render_template('compra/compra.html', nav = nav, compra=compras)
 
 
-@compra_views.route('/compra/create/<int:id_compra>', methods=('GET',))
+@compra_views.route('/compra/create/<int:id_compra>', methods=('GET','POST'))
 @compra_views.route('/compra/create/', defaults={'id_compra': None}, methods=('GET','POST'))
+@ login_required
 def create_com(id_compra):
     nav = Menu_roles.get(session.get("role"))
     form=CreateCompraForm()
@@ -43,7 +44,9 @@ def create_com(id_compra):
     return render_template(f'compra/create_com.html', form=form, nav = nav, carritoCompras = carritoCompras,id_compra= id_compra)
 
 @compra_views.route('/compra/<int:id_producto>/update/', methods=('GET', 'POST'))
+@ login_required
 def update_com(id_compra):
+    nav = Menu_roles.get(session.get("role"))
     form=UpdateCompraForm()
     com=Compra.get(id_compra)
     if form.validate_on_submit():
@@ -55,7 +58,7 @@ def update_com(id_compra):
     form.fecha_compra.data = com.fecha_compra
     form.cantidad_compra.data = com.cantidad_compra
     form.total_compra.data = com.total_compra
-    return render_template('compra/create_com.html', form=form)
+    return render_template('compra/create_com.html', form=form, nav = nav)
 
 @compra_views.route('/compra/<int:id_compra>/<int:id_producto>/delete/', methods=('POST',))
 def delete_com(id_compra, id_producto):
@@ -67,6 +70,7 @@ def delete_com(id_compra, id_producto):
 
 
 @compra_views.route('/compra/ticket/<int:id_compra>', methods=("GET", "POST"))
+@ login_required
 def get_ticket(id_compra):
     nav = Menu_roles.get(session.get("role"))
     listaTicket = []
